@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  cubrid:
+    image: cubrid/cubrid:11.2
+    container_name: cubrid-cookbook
+    ports:
+      - "33000:33000"
+    environment:
+      CUBRID_DB: testdb
+    healthcheck:
+      test: ["CMD", "csql", "-u", "dba", "testdb", "-c", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    volumes:
+      - cubrid_data:/var/lib/cubrid
+
+volumes:
+  cubrid_data:

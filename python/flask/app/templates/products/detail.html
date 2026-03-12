@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Product Detail{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">Product Detail</h1>
+  <a class="btn btn-outline-secondary" href="{{ url_for('products.list_products') }}">Back to List</a>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h2 class="h4">{{ product.name }}</h2>
+    <p class="text-muted mb-3">Category: {{ product.category }}</p>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+    <p><strong>In stock:</strong> {{ 'Yes' if product.in_stock else 'No' }}</p>
+    <p><strong>Created at:</strong> {{ product.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+
+    <h3 class="h6 mt-4">Description</h3>
+    <p class="mb-4">{{ product.description or 'No description provided.' }}</p>
+
+    <div class="d-flex gap-2">
+      <a class="btn btn-primary" href="{{ url_for('products.edit_product_form', product_id=product.id) }}">Edit</a>
+      <form method="post" action="{{ url_for('products.delete_product', product_id=product.id) }}">
+        <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Delete this product?');">
+          Delete
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

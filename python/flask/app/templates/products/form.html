@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% if product %}
+  {% set page_title = 'Edit Product' %}
+  {% set submit_label = 'Update Product' %}
+  {% set form_action = url_for('products.update_product', product_id=product.id) %}
+{% else %}
+  {% set page_title = 'Create Product' %}
+  {% set submit_label = 'Create Product' %}
+  {% set form_action = url_for('products.create_product') %}
+{% endif %}
+
+{% block title %}{{ page_title }} - CUBRID Flask Cookbook{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">{{ page_title }}</h1>
+  <a class="btn btn-outline-secondary" href="{{ url_for('products.list_products') }}">Back to List</a>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <form method="post" action="{{ form_action }}">
+      <div class="mb-3">
+        <label class="form-label" for="name">Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          name="name"
+          value="{{ request.form.get('name', product.name if product else '') }}"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="4">{{ request.form.get('description', product.description if product else '') }}</textarea>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label" for="price">Price</label>
+          <input
+            class="form-control"
+            type="number"
+            id="price"
+            name="price"
+            step="0.01"
+            min="0"
+            value="{{ request.form.get('price', product.price if product else '') }}"
+            required
+          >
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="category">Category</label>
+          <input
+            class="form-control"
+            type="text"
+            id="category"
+            name="category"
+            value="{{ request.form.get('category', product.category if product else '') }}"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-check my-3">
+        {% set in_stock_checked = request.form.get('in_stock') or (product and product.in_stock) %}
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="in_stock"
+          name="in_stock"
+          value="1"
+          {% if in_stock_checked %}checked{% endif %}
+        >
+        <label class="form-check-label" for="in_stock">
+          In stock
+        </label>
+      </div>
+
+      <button class="btn btn-primary" type="submit">{{ submit_label }}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
