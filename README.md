@@ -6,7 +6,6 @@
 [![CUBRID 11.2](https://img.shields.io/badge/CUBRID-11.2-green.svg)](https://www.cubrid.org/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![Node.js 18+](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](https://nodejs.org/)
-[![Java 17+](https://img.shields.io/badge/java-17%2B-orange.svg)](https://adoptium.net/)
 
 ---
 
@@ -35,12 +34,6 @@ Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://w
 |---------|--------|-------------|
 | [cubrid](node/cubrid/) | @cubrid/client | Modern Promise-based client — connect, query, CRUD, transactions |
 
-### ☕ Java
-
-| Example | Driver | Description |
-|---------|--------|-------------|
-| [jdbc](java/jdbc/) | CUBRID JDBC | Standard JDBC 4.0 — connect, query, CRUD, transactions, savepoints |
-
 ## Quick Start
 
 ### 1. Start CUBRID
@@ -67,13 +60,6 @@ npm install
 node 01_connect.js
 ```
 
-**Java:**
-```bash
-cd java/jdbc
-mvn compile
-mvn exec:java -Dexec.mainClass="cookbook.Connect"
-```
-
 Every example has its own `README.md` with setup instructions.
 
 ### 3. Clean up
@@ -87,8 +73,7 @@ make clean
 - **Docker** and **Docker Compose** (for the CUBRID database)
 - **Python 3.10+** (for Python examples)
 - **Node.js 18+** (for Node.js examples)
-- **Java 17+** and **Maven 3.6+** (for Java examples)
-- Each example lists its own dependencies in `requirements.txt` or `package.json` or `pom.xml`
+- Each example lists its own dependencies in `requirements.txt` or `package.json`
 
 ## Project Structure
 
@@ -119,13 +104,6 @@ cubrid-cookbook/
 │       ├── 02_crud.js
 │       ├── 03_transactions.js
 │       └── package.json
-└── java/
-    └── jdbc/                   # CUBRID JDBC direct usage
-        ├── src/main/java/cookbook/
-        │   ├── Connect.java
-        │   ├── Crud.java
-        │   └── Transactions.java
-        └── pom.xml
 ```
 
 ## Connection
@@ -158,17 +136,11 @@ import { createClient } from "@cubrid/client";
 const db = createClient({ host: "localhost", port: 33000, database: "testdb", user: "dba" });
 ```
 
-**Java (JDBC)**:
-```java
-Connection conn = DriverManager.getConnection("jdbc:cubrid:localhost:33000:testdb:dba::");
-```
-
 ## Related Projects
 
 - [pycubrid](https://github.com/cubrid-labs/pycubrid) — Pure Python DB-API 2.0 driver for CUBRID
 - [sqlalchemy-cubrid](https://github.com/cubrid-labs/sqlalchemy-cubrid) — SQLAlchemy 2.0 dialect for CUBRID
 - [@cubrid/client](https://github.com/cubrid-labs/cubrid-client) — Modern TypeScript-first Node.js client for CUBRID
-- [CUBRID JDBC](https://www.cubrid.org/manual/en/11.2/api/jdbc.html) — Official JDBC 4.0 driver for CUBRID
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
 
 ## Contributing
