@@ -1,0 +1,17 @@
+{
+  "name": "cubrid-cookbook-node",
+  "version": "1.0.0",
+  "description": "CUBRID Cookbook — Node.js direct driver examples",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "01": "node 01_connect.js",
+    "02": "node 02_crud.js",
+    "03": "node 03_transactions.js"
+  },
+  "dependencies": {
+    "@cubrid/client": "^0.1.0"
+  }
+}
