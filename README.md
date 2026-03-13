@@ -1,6 +1,6 @@
 # CUBRID Cookbook 🍳
 
-**Production-ready examples for CUBRID across multiple languages.**
+**Production-ready examples for using CUBRID with Python, Node.js, and Go** — SQLAlchemy, FastAPI, Django, Flask, Drizzle ORM, GORM, and more.
 
 <!-- BADGES:START -->
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -207,6 +207,41 @@ db, _ := gorm.Open(cubrid.Open("cubrid://dba:@localhost:33000/testdb"), &gorm.Co
 - [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — Drizzle ORM dialect for CUBRID
 - [cubrid-go](https://github.com/cubrid-labs/cubrid-go) — Pure Go CUBRID driver (`database/sql` + GORM)
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
+
+## FAQ
+
+### How do I use CUBRID with Python?
+
+See the [pycubrid examples](python/pycubrid/) for direct driver usage or [SQLAlchemy examples](python/sqlalchemy/) for ORM usage. Install: `pip install pycubrid` or `pip install sqlalchemy-cubrid`.
+
+### How do I use CUBRID with Node.js / TypeScript?
+
+See the [cubrid-client examples](node/cubrid/) for direct driver usage or [Drizzle ORM examples](node/drizzle/) for ORM usage. Install: `npm install cubrid-client` or `npm install drizzle-cubrid drizzle-orm cubrid-client`.
+
+### How do I use CUBRID with Go?
+
+See the [cubrid-go examples](go/cubrid-go/) for `database/sql` usage or [GORM examples](go/gorm/) for ORM usage. Install: `go get github.com/cubrid-labs/cubrid-go`.
+
+### How do I start a CUBRID database for testing?
+
+```bash
+docker compose up -d
+```
+
+This starts CUBRID 11.2 on `localhost:33000` with database `testdb` and user `dba`.
+
+### How do I use CUBRID with FastAPI?
+
+See the [FastAPI example](python/fastapi/) — a complete REST API with automatic OpenAPI docs, dependency injection, and CRUD operations using sqlalchemy-cubrid.
+
+### How do I use CUBRID with Django?
+
+See the [Django example](python/django/) — Django project using CUBRID via SQLAlchemy bridge since there is no native Django CUBRID backend.
+
+### How do I use CUBRID with Pandas?
+
+See the [Pandas example](python/pandas/) — data analysis pipeline with `read_sql`, DataFrame transforms, and visualization using pycubrid or sqlalchemy-cubrid.
+
 
 ## Contributing
 
