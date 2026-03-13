@@ -6,7 +6,7 @@
 // - Schema definition with custom types
 // - Insert and query with collection data
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 import { drizzle, cubridTable, int, varchar, sql } from "drizzle-cubrid";
 import { set, multiset, sequence, monetary } from "drizzle-cubrid";
 

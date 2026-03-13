@@ -1,11 +1,11 @@
-// 03_transactions.js — Transaction management with @cubrid/client.
+// 03_transactions.js — Transaction management with cubrid-client.
 //
 // Demonstrates:
 // - Automatic commit on success with db.transaction()
 // - Automatic rollback on error with db.transaction()
 // - Multiple statements within a single transaction
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 
 const DB_CONFIG = {
   host: "localhost",

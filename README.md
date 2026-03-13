@@ -32,7 +32,7 @@ Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://w
 
 | Example | Driver | Description |
 |---------|--------|-------------|
-| [cubrid](node/cubrid/) | @cubrid/client | Modern Promise-based client — connect, query, CRUD, transactions |
+| [cubrid](node/cubrid/) | cubrid-client | Modern Promise-based client — connect, query, CRUD, transactions |
 | [drizzle](node/drizzle/) | Drizzle ORM | Type-safe ORM — schema, query builder, CRUD, transactions, custom types |
 
 ## Quick Start
@@ -100,12 +100,12 @@ cubrid-cookbook/
 │   ├── streamlit/              # Data dashboard
 │   └── celery/                 # Async tasks
 ├── node/
-│   ├── cubrid/                 # @cubrid/client direct usage
+│   ├── cubrid/                 # cubrid-client direct usage
 │   │   ├── 01_connect.js
 │   │   ├── 02_crud.js
 │   │   ├── 03_transactions.js
 │   │   └── package.json
-│   └── drizzle/                # Drizzle ORM + @cubrid/client
+│   └── drizzle/                # Drizzle ORM + cubrid-client
 │       ├── 01_connect.js
 │       ├── 02_crud.js
 │       ├── 03_transactions.js
@@ -137,15 +137,15 @@ from sqlalchemy import create_engine
 engine = create_engine("cubrid+pycubrid://dba@localhost:33000/testdb")
 ```
 
-**Node.js (@cubrid/client)**:
+**Node.js (cubrid-client)**:
 ```js
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 const db = createClient({ host: "localhost", port: 33000, database: "testdb", user: "dba" });
 ```
 
 **Node.js (Drizzle ORM)**:
 ```js
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 import { drizzle } from "drizzle-cubrid";
 const client = createClient({ host: "localhost", port: 33000, database: "testdb", user: "dba" });
 const db = drizzle(client);
@@ -155,7 +155,7 @@ const db = drizzle(client);
 
 - [pycubrid](https://github.com/cubrid-labs/pycubrid) — Pure Python DB-API 2.0 driver for CUBRID
 - [sqlalchemy-cubrid](https://github.com/cubrid-labs/sqlalchemy-cubrid) — SQLAlchemy 2.0 dialect for CUBRID
-- [@cubrid/client](https://github.com/cubrid-labs/cubrid-client) — Modern TypeScript-first Node.js client for CUBRID
+- [cubrid-client](https://github.com/cubrid-labs/cubrid-client) — Modern TypeScript-first Node.js client for CUBRID
 - [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — Drizzle ORM dialect for CUBRID
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
 

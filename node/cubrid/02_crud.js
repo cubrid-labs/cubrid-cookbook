@@ -1,4 +1,4 @@
-// 02_crud.js — CRUD operations with @cubrid/client.
+// 02_crud.js — CRUD operations with cubrid-client.
 //
 // Demonstrates:
 // - CREATE TABLE
@@ -8,7 +8,7 @@
 // - DELETE rows
 // - DROP TABLE cleanup
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 
 const DB_CONFIG = {
   host: "localhost",

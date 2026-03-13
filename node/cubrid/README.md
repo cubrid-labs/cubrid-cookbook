@@ -1,6 +1,6 @@
 # node-cubrid Examples
 
-Direct CUBRID access from Node.js using the [@cubrid/client](https://github.com/cubrid-labs/cubrid-client) package — a modern, TypeScript-first Promise-based client built on top of the `node-cubrid` driver.
+Direct CUBRID access from Node.js using the [cubrid-client](https://github.com/cubrid-labs/cubrid-client) package — a modern, TypeScript-first Promise-based client built on top of the `node-cubrid` driver.
 
 ## Features
 
@@ -50,7 +50,7 @@ Each script is self-contained — it creates its own tables, runs examples, and 
 ### Connecting to CUBRID
 
 ```js
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 
 const db = createClient({
   host: "localhost",
@@ -148,10 +148,10 @@ Running `03_transactions.js`:
 | Issue | Solution |
 |-------|----------|
 | `ConnectionError: Failed to connect` | Ensure CUBRID is running: `make up` from repo root |
-| `Cannot find package '@cubrid/client'` | Run `npm install` in this directory |
+| `Cannot find package 'cubrid-client'` | Run `npm install` in this directory |
 | `SyntaxError: Cannot use import statement` | Requires Node.js 18+ with `"type": "module"` in `package.json` |
 
 ## Learn More
 
-- [@cubrid/client documentation](https://github.com/cubrid-labs/cubrid-client)
+- [cubrid-client documentation](https://github.com/cubrid-labs/cubrid-client)
 - [CUBRID SQL Guide](https://www.cubrid.org/manual/en/11.2/sql/index.html)

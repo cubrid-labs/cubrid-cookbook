@@ -1,4 +1,4 @@
-// 01_connect.js — Connecting to CUBRID with @cubrid/client.
+// 01_connect.js — Connecting to CUBRID with cubrid-client.
 //
 // Demonstrates:
 // - Basic connection
@@ -6,7 +6,7 @@
 // - Connection metadata (version, database, user)
 // - Reusing a client for multiple queries
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 
 const DB_CONFIG = {
   host: "localhost",

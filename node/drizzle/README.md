@@ -1,6 +1,6 @@
 # Drizzle ORM Examples
 
-Type-safe CUBRID access from Node.js using [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — the Drizzle ORM dialect for CUBRID, built on top of [@cubrid/client](https://github.com/cubrid-labs/cubrid-client).
+Type-safe CUBRID access from Node.js using [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — the Drizzle ORM dialect for CUBRID, built on top of [cubrid-client](https://github.com/cubrid-labs/cubrid-client).
 
 ## Features
 
@@ -53,7 +53,7 @@ Each script is self-contained — it creates its own tables, runs examples, and 
 ### Connecting with Drizzle
 
 ```js
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 import { drizzle } from "drizzle-cubrid";
 import { sql } from "drizzle-orm";
 
@@ -181,7 +181,7 @@ Running `03_transactions.js`:
 
 | Method | Description |
 |--------|-------------|
-| `drizzle(client)` | Create a Drizzle instance from a `@cubrid/client` client |
+| `drizzle(client)` | Create a Drizzle instance from a `cubrid-client` client |
 | `cubridTable(name, columns)` | Define a typed table schema |
 | `db.select().from(table)` | Type-safe SELECT with column inference |
 | `db.insert(table).values(data)` | INSERT one or more rows |
@@ -196,12 +196,12 @@ Running `03_transactions.js`:
 |-------|----------|
 | `ConnectionError: Failed to connect` | Ensure CUBRID is running: `make up` from repo root |
 | `Cannot find package 'drizzle-cubrid'` | Run `npm install` in this directory |
-| `Cannot find package '@cubrid/client'` | Run `npm install` in this directory |
+| `Cannot find package 'cubrid-client'` | Run `npm install` in this directory |
 | `SyntaxError: Cannot use import statement` | Requires Node.js 18+ with `"type": "module"` in `package.json` |
 
 ## Learn More
 
 - [drizzle-cubrid documentation](https://github.com/cubrid-labs/drizzle-cubrid)
-- [@cubrid/client documentation](https://github.com/cubrid-labs/cubrid-client)
+- [cubrid-client documentation](https://github.com/cubrid-labs/cubrid-client)
 - [Drizzle ORM documentation](https://orm.drizzle.team/)
 - [CUBRID SQL Guide](https://www.cubrid.org/manual/en/11.2/sql/index.html)

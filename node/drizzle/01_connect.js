@@ -1,11 +1,11 @@
 // 01_connect.js — Connecting to CUBRID with Drizzle ORM.
 //
 // Demonstrates:
-// - Creating a drizzle instance with @cubrid/client
+// - Creating a drizzle instance with cubrid-client
 // - Running raw SQL with sql template tag
 // - Connection metadata (version, database, user)
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 import { drizzle } from "drizzle-cubrid";
 import { sql } from "drizzle-orm";
 

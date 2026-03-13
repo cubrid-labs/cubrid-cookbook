@@ -5,7 +5,7 @@
 // - Automatic rollback on error with db.transaction()
 // - Multiple statements within a single transaction
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 import { drizzle, cubridTable, int, varchar, sql, eq } from "drizzle-cubrid";
 import { double as doubleCol } from "drizzle-orm/mysql-core";
 

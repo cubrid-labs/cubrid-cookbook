@@ -8,7 +8,7 @@
 // - DELETE rows
 // - DROP TABLE cleanup
 
-import { createClient } from "@cubrid/client";
+import { createClient } from "cubrid-client";
 import { drizzle, cubridTable, int, varchar, sql, eq, gte } from "drizzle-cubrid";
 
 // --- Schema ---
