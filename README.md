@@ -13,6 +13,9 @@
 
 ---
 
+> **New here?** Start with the [CUBRID in 5 Minutes](GETTING_STARTED.md) guide — pick your language and build something in one page.
+
+
 ## What is this?
 
 Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://www.cubrid.org/) with popular frameworks and drivers across multiple languages. Every example connects to a real CUBRID database via Docker.
