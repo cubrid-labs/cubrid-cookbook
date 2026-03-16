@@ -1,6 +1,6 @@
-# node-cubrid Examples
+# cubrid-client Examples
 
-Direct CUBRID access from Node.js using the [cubrid-client](https://github.com/cubrid-labs/cubrid-client) package — a modern, TypeScript-first Promise-based client built on top of the `node-cubrid` driver.
+Direct CUBRID access from Node.js using the [cubrid-client](https://github.com/cubrid-labs/cubrid-client) package — a modern, TypeScript-first Promise-based client using the native CAS protocol.
 
 ## Features
 

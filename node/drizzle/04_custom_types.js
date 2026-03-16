@@ -6,7 +6,7 @@
 // - Filtering with the IN operator on SET columns
 // - Collection modification (add/remove elements)
 //
-// NOTE: node-cubrid does not fully decode collection-typed columns in SELECT
+// NOTE: cubrid-client does not fully decode collection-typed columns in SELECT
 // results yet. This example inserts collection data using raw SQL literals
 // and queries scalar columns while filtering on collections.
 
@@ -58,7 +58,7 @@ async function insertProducts(db) {
 
 async function queryProducts(db) {
   console.log("\n=== All Products ===");
-  // Select scalar columns only (collection columns are not fully decoded by node-cubrid)
+  // Select scalar columns only (collection columns are not fully decoded by cubrid-client in SELECT results)
   const rows = await db.execute(
     sql`SELECT id, name, price FROM cookbook_products ORDER BY id`,
   );
