@@ -12,6 +12,6 @@
     "03": "node 03_transactions.js"
   },
   "dependencies": {
-    "cubrid-client": "file:../../../cubrid-client"
+    "cubrid-client": "^1.0.0"
   }
 }
