@@ -1,13 +1,14 @@
 # CUBRID Cookbook 🍳
 
-**Production-ready examples for using CUBRID with Python, Node.js, and Go** — SQLAlchemy, FastAPI, Django, Flask, Drizzle ORM, GORM, and more.
+**Production-ready examples for using CUBRID with Python, Node.js, Go, and Rust** — SQLAlchemy, FastAPI, Django, Flask, Drizzle ORM, GORM, SeaORM, and more.
 
 <!-- BADGES:START -->
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CUBRID 11.2](https://img.shields.io/badge/CUBRID-11.2-green.svg)](https://www.cubrid.org/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![Node.js 18+](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](https://nodejs.org/)
 [![Go 1.21+](https://img.shields.io/badge/go-1.21%2B-00ADD8.svg)](https://go.dev)
+[![Rust 1.70+](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
 [![GitHub stars](https://img.shields.io/github/stars/cubrid-labs/cubrid-cookbook)](https://github.com/cubrid-labs/cubrid-cookbook)
 <!-- BADGES:END -->
 
@@ -49,6 +50,13 @@ Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://w
 | [cubrid-go](go/cubrid-go/) | cubrid-go | Pure Go `database/sql` driver — connect, query, CRUD, transactions |
 | [gorm](go/gorm/) | GORM | GORM ORM — AutoMigrate, models, CRUD, relationships, advanced queries |
 
+### 🦀 Rust
+
+| Example | Driver | Description |
+|---------|--------|-------------|
+| [cubrid-rs](rust/cubrid-rs/) | cubrid-tokio | Native Rust async driver — connect, query, CRUD, transactions |
+| [sea-orm-cubrid](rust/sea-orm-cubrid/) | SeaORM + sea-orm-cubrid | SeaORM backend for CUBRID — connect, entity CRUD |
+
 ## Quick Start
 
 ### 1. Start CUBRID
@@ -81,6 +89,12 @@ cd go/cubrid-go
 go run 01_connect.go
 ```
 
+**Rust:**
+```bash
+cd rust/cubrid-rs
+cargo run --bin 01_connect
+```
+
 Every example has its own `README.md` with setup instructions.
 
 ### 3. Clean up
@@ -94,8 +108,9 @@ make clean
 - **Docker** and **Docker Compose** (for the CUBRID database)
 - **Python 3.10+** (for Python examples)
 - **Node.js 18+** (for Node.js examples)
-- Each example lists its own dependencies in `requirements.txt` or `package.json` or `go.mod`
 - **Go 1.21+** (for Go examples)
+- **Rust 1.70+** (for Rust examples)
+- Each example lists its own dependencies in `requirements.txt`, `package.json`, `go.mod`, or `Cargo.toml`
 
 ## Project Structure
 
@@ -144,6 +159,18 @@ cubrid-cookbook/
 │       ├── 03_relationships.go
 │       ├── 04_advanced.go
 │       └── go.mod
+├── rust/
+│   ├── cubrid-rs/             # Native Rust async driver
+│   │   ├── 01_connect.rs
+│   │   ├── 02_crud.rs
+│   │   ├── 03_transactions.rs
+│   │   ├── Cargo.toml
+│   │   └── README.md
+│   └── sea-orm-cubrid/        # SeaORM backend for CUBRID
+│       ├── 01_connect.rs
+│       ├── 02_crud.rs
+│       ├── Cargo.toml
+│       └── README.md
 ```
 
 ## Connection
@@ -202,6 +229,19 @@ import (
 db, _ := gorm.Open(cubrid.Open("cubrid://dba:@localhost:33000/testdb"), &gorm.Config{})
 ```
 
+**Rust (cubrid-tokio)**:
+```rust
+use cubrid_tokio::Client;
+
+let mut client = Client::connect("cubrid://dba:@localhost:33000/testdb").await?;
+let _result = client.query("SELECT 1 + 1 AS result", &[]).await?;
+```
+
+**Rust (SeaORM + sea-orm-cubrid)**:
+```rust
+let db = sea_orm_cubrid::connect("cubrid://dba:@localhost:33000/testdb").await?;
+```
+
 ## Related Projects
 
 - [pycubrid](https://github.com/cubrid-labs/pycubrid) — Pure Python DB-API 2.0 driver for CUBRID
@@ -210,7 +250,7 @@ db, _ := gorm.Open(cubrid.Open("cubrid://dba:@localhost:33000/testdb"), &gorm.Co
 - [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — Drizzle ORM dialect for CUBRID
 - [cubrid-go](https://github.com/cubrid-labs/cubrid-go) — Pure Go CUBRID driver (`database/sql` + GORM)
 - [cubrid-rs](https://github.com/cubrid-labs/cubrid-rs) — Native Rust database driver for CUBRID (sync + async, pure Rust)
-- [CUBRID](https://www.cubrid.org/) — The CUBRID database
+- [sea-orm-cubrid](https://github.com/cubrid-labs/sea-orm-cubrid) — SeaORM backend for CUBRID
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
 
 ## FAQ
@@ -226,6 +266,14 @@ See the [cubrid-client examples](node/cubrid/) for direct driver usage or [Drizz
 ### How do I use CUBRID with Go?
 
 See the [cubrid-go examples](go/cubrid-go/) for `database/sql` usage or [GORM examples](go/gorm/) for ORM usage. Install: `go get github.com/cubrid-labs/cubrid-go`.
+
+### How do I use CUBRID with Rust?
+
+See the [cubrid-rs examples](rust/cubrid-rs/) for native async driver usage. Install: `cargo add cubrid-tokio tokio --features tokio/macros,tokio/rt-multi-thread`.
+
+### How do I use CUBRID with SeaORM?
+
+See the [sea-orm-cubrid examples](rust/sea-orm-cubrid/) for SeaORM entity-based usage. Install: `cargo add sea-orm sea-orm-cubrid`.
 
 ### How do I start a CUBRID database for testing?
 
@@ -254,4 +302,4 @@ Found a bug or want to add an example? PRs welcome! Each example should be self-
 
 ## License
 
-[Apache License 2.0](LICENSE)
+[MIT](LICENSE)
