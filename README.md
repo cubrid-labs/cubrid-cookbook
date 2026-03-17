@@ -249,6 +249,8 @@ let db = sea_orm_cubrid::connect("cubrid://dba:@localhost:33000/testdb").await?;
 - [cubrid-rs](https://github.com/cubrid-labs/cubrid-rs) — Native Rust database driver for CUBRID (sync + async, pure Rust)
 - [sea-orm-cubrid](https://github.com/cubrid-labs/sea-orm-cubrid) — SeaORM backend for CUBRID
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
+- [gorm-cubrid](https://github.com/cubrid-labs/gorm-cubrid) — GORM dialect for CUBRID
+- [cubrid-benchmark](https://github.com/cubrid-labs/cubrid-benchmark) — Multi-language benchmark suite for CUBRID
 
 ## FAQ
 
