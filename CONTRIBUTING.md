@@ -21,24 +21,27 @@ and instructions for contributing to the project.
 3. **Include a README** for each example with setup and run instructions
 4. **Follow the existing directory structure**:
 
-```
-python/
-├── fastapi/          # FastAPI examples
-├── django/           # Django examples
-├── flask/            # Flask examples
-├── sqlalchemy/       # SQLAlchemy core/ORM examples
-├── pycubrid/         # Pure pycubrid driver examples
-├── pandas/           # Data analysis examples
-├── celery/           # Task queue examples
-└── streamlit/        # Dashboard examples
+```mermaid
+flowchart TD
+    ROOT[examples]
+    ROOT --> PY[python/]
+    ROOT --> ND[node/]
+    ROOT --> GO[go/]
 
-node/
-├── cubrid-client/    # cubrid-client driver examples
-└── drizzle/          # Drizzle ORM examples
+    PY --> PYFA[fastapi/]
+    PY --> PYDJ[django/]
+    PY --> PYFL[flask/]
+    PY --> PYSA[sqlalchemy/]
+    PY --> PYPY[pycubrid/]
+    PY --> PYPD[pandas/]
+    PY --> PYCE[celery/]
+    PY --> PYST[streamlit/]
 
-go/
-├── cubrid-go/        # cubrid-go driver examples
-└── gorm/             # GORM ORM examples
+    ND --> NDCB[cubrid-client/]
+    ND --> NDDR[drizzle/]
+
+    GO --> GOCB[cubrid-go/]
+    GO --> GOGM[gorm/]
 ```
 
 ### Running Examples

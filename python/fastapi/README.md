@@ -13,20 +13,24 @@ Production-ready FastAPI REST API example using SQLAlchemy ORM and the CUBRID di
 
 ## Project Structure
 
-```text
-python/fastapi/
-├── app/
-│   ├── __init__.py
-│   ├── database.py
-│   ├── main.py
-│   ├── models.py
-│   ├── routes/
-│   │   ├── __init__.py
-│   │   └── tasks.py
-│   └── schemas.py
-├── tests/
-│   └── __init__.py
-└── requirements.txt
+```mermaid
+flowchart TD
+    ROOT[python/fastapi/]
+    ROOT --> APP[app/]
+    ROOT --> TST[tests/]
+    ROOT --> REQ[requirements.txt]
+
+    APP --> APIN[__init__.py]
+    APP --> APDB[database.py]
+    APP --> APMN[main.py]
+    APP --> APMD[models.py]
+    APP --> APRT[routes/]
+    APP --> APSC[schemas.py]
+
+    APRT --> ARIN[__init__.py]
+    APRT --> ARTK[tasks.py]
+
+    TST --> TSIN[__init__.py]
 ```
 
 ## Prerequisites

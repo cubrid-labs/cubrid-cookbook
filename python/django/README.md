@@ -10,54 +10,43 @@ Application data for this example is stored in CUBRID using SQLAlchemy and pycub
 
 ## Architecture
 
-```
-┌──────────────────────────────────────────────┐
-│                  Django                       │
-│  ┌──────────┐   ┌────────────────────────┐   │
-│  │  Views   │   │  Templates (Jinja2)    │   │
-│  └─────┬────┘   └────────────────────────┘   │
-│        │                                      │
-│  ┌─────▼──────────────────────────────────┐  │
-│  │        Data Access Layer               │  │
-│  │  ┌──────────────┐  ┌───────────────┐   │  │
-│  │  │  SQLAlchemy   │  │   pycubrid    │   │  │
-│  │  │  ORM Models   │  │   Raw SQL     │   │  │
-│  │  └──────┬───────┘  └──────┬────────┘   │  │
-│  └─────────┼─────────────────┼────────────┘  │
-│            │                 │                │
-│  ┌─────────▼─────────────────▼────────────┐  │
-│  │    sqlalchemy-cubrid dialect            │  │
-│  └─────────────────┬──────────────────────┘  │
-└────────────────────┼─────────────────────────┘
-                     │
-         ┌───────────▼───────────┐
-         │    CUBRID Database    │
-         │    (localhost:33000)  │
-         └───────────────────────┘
+```mermaid
+flowchart TD
+    DJ[Django]
+    DJ --> VW[Views]
+    DJ --> TM[Templates]
+    VW --> SA[SQLAlchemy ORM models]
+    VW --> PC[pycubrid raw SQL]
+    SA --> SD[sqlalchemy-cubrid dialect]
+    PC --> SD
+    SD --> C[(CUBRID\nlocalhost:33000)]
 ```
 
 ## Project Structure
 
-```
-django/
-├── manage.py
-├── requirements.txt
-├── README.md
-├── cubrid_project/
-│   ├── __init__.py
-│   ├── settings.py          # Django settings (SQLite + CUBRID config)
-│   ├── urls.py
-│   ├── asgi.py
-│   └── wsgi.py
-└── cookbook/
-    ├── __init__.py
-    ├── cubrid_db.py          # SQLAlchemy engine + pycubrid cursor helpers
-    ├── sa_models.py          # SQLAlchemy ORM models (Employee)
-    ├── views.py              # Django views using both patterns
-    ├── urls.py
-    └── templates/cookbook/
-        ├── dashboard.html    # Employee list + add form (SQLAlchemy ORM)
-        └── raw_sql.html      # SQL query results (pycubrid raw SQL)
+```mermaid
+flowchart TD
+    ROOT[django/]
+    ROOT --> MNG[manage.py]
+    ROOT --> REQ[requirements.txt]
+    ROOT --> RMD[README.md]
+    ROOT --> CP[cubrid_project/]
+    ROOT --> CB[cookbook/]
+
+    CP --> CPIN[__init__.py]
+    CP --> CPST[settings.py]
+    CP --> CPUR[urls.py]
+    CP --> CPAS[asgi.py]
+    CP --> CPWS[wsgi.py]
+
+    CB --> CBIN[__init__.py]
+    CB --> CBDB[cubrid_db.py]
+    CB --> CBSM[sa_models.py]
+    CB --> CBVW[views.py]
+    CB --> CBUR[urls.py]
+    CB --> CBTM[templates/cookbook/]
+    CBTM --> CBDH[dashboard.html]
+    CBTM --> CBRS[raw_sql.html]
 ```
 
 ## CUBRID Connection

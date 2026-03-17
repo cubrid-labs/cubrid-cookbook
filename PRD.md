@@ -50,59 +50,60 @@ A comprehensive, multi-language example repository:
 
 ### 2.1 Project Structure
 
-```
-cubrid-cookbook/
-├── docker-compose.yml              # Shared CUBRID 11.2 database
-├── .env.example                    # Connection settings template
-├── Makefile                        # Docker shortcuts (up, clean)
-│
-├── python/
-│   ├── pycubrid/                   # Direct DB-API 2.0 driver
-│   │   ├── 01_connect.py           # Basic connection
-│   │   ├── 02_crud.py              # CRUD operations
-│   │   ├── 03_transactions.py      # Transaction management
-│   │   ├── 04_prepared.py          # Prepared statements
-│   │   ├── 05_error_handling.py    # Error handling
-│   │   ├── 06_lob.py              # LOB operations
-│   │   ├── requirements.txt
-│   │   └── README.md
-│   ├── sqlalchemy/                 # SQLAlchemy Core + ORM
-│   ├── fastapi/                    # FastAPI REST API
-│   ├── django/                     # Django integration
-│   ├── flask/                      # Flask + Flask-SQLAlchemy
-│   ├── pandas/                     # Data analysis pipeline
-│   ├── streamlit/                  # Interactive data dashboard
-│   └── celery/                     # Async task queue
-│
-├── node/
-│   ├── cubrid/                     # cubrid-client direct usage
-│   │   ├── 01_connect.js           # Basic connection
-│   │   ├── 02_crud.js              # CRUD operations
-│   │   ├── 03_transactions.js      # Transactions
-│   │   ├── package.json
-│   │   └── README.md
-│   └── drizzle/                    # Drizzle ORM
-│       ├── 01_connect.js           # Connection + schema
-│       ├── 02_crud.js              # Type-safe CRUD
-│       ├── 03_transactions.js      # Transactions
-│       ├── 04_custom_types.js      # CUBRID-specific types
-│       ├── package.json
-│       └── README.md
-│
-└── go/
-    ├── cubrid-go/                  # database/sql driver
-    │   ├── 01_connect.go           # Basic connection
-    │   ├── 02_crud.go              # CRUD operations
-    │   ├── 03_transactions.go      # Transactions
-    │   ├── go.mod
-    │   └── README.md
-    └── gorm/                       # GORM ORM
-        ├── 01_connect.go           # Connection + AutoMigrate
-        ├── 02_crud.go              # GORM CRUD
-        ├── 03_relationships.go     # Associations
-        ├── 04_advanced.go          # Advanced queries
-        ├── go.mod
-        └── README.md
+```mermaid
+flowchart TD
+    ROOT[cubrid-cookbook/]
+    ROOT --> DC[docker-compose.yml]
+    ROOT --> ENV[.env.example]
+    ROOT --> MK[Makefile]
+    ROOT --> PY[python/]
+    ROOT --> ND[node/]
+    ROOT --> GO[go/]
+
+    PY --> PYC[pycubrid/]
+    PYC --> PYC01[01_connect.py]
+    PYC --> PYC02[02_crud.py]
+    PYC --> PYC03[03_transactions.py]
+    PYC --> PYC04[04_prepared.py]
+    PYC --> PYC05[05_error_handling.py]
+    PYC --> PYC06[06_lob.py]
+    PYC --> PYCR[requirements.txt]
+    PYC --> PYCRM[README.md]
+    PY --> PYSA[sqlalchemy/]
+    PY --> PYFA[fastapi/]
+    PY --> PYDJ[django/]
+    PY --> PYFL[flask/]
+    PY --> PYPD[pandas/]
+    PY --> PYST[streamlit/]
+    PY --> PYCE[celery/]
+
+    ND --> NDCB[cubrid/]
+    NDCB --> NDCB01[01_connect.js]
+    NDCB --> NDCB02[02_crud.js]
+    NDCB --> NDCB03[03_transactions.js]
+    NDCB --> NDCBP[package.json]
+    NDCB --> NDCBR[README.md]
+    ND --> NDDR[drizzle/]
+    NDDR --> NDDR01[01_connect.js]
+    NDDR --> NDDR02[02_crud.js]
+    NDDR --> NDDR03[03_transactions.js]
+    NDDR --> NDDR04[04_custom_types.js]
+    NDDR --> NDDRP[package.json]
+    NDDR --> NDDRR[README.md]
+
+    GO --> GOCB[cubrid-go/]
+    GOCB --> GOCB01[01_connect.go]
+    GOCB --> GOCB02[02_crud.go]
+    GOCB --> GOCB03[03_transactions.go]
+    GOCB --> GOCBM[go.mod]
+    GOCB --> GOCBR[README.md]
+    GO --> GOGM[gorm/]
+    GOGM --> GOGM01[01_connect.go]
+    GOGM --> GOGM02[02_crud.go]
+    GOGM --> GOGM03[03_relationships.go]
+    GOGM --> GOGM04[04_advanced.go]
+    GOGM --> GOGMM[go.mod]
+    GOGM --> GOGMR[README.md]
 ```
 
 ### 2.2 Shared Infrastructure

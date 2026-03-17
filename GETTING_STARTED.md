@@ -295,31 +295,20 @@ docker stop cubrid && docker rm cubrid
 
 ## Ecosystem at a Glance
 
-```
-                    ┌─────────────────────────────────┐
-                    │         CUBRID Database          │
-                    │    cubrid/cubrid:11.2 (Docker)   │
-                    └──────────┬──────────────────────┘
-                               │ TCP :33000
-               ┌───────────────┼───────────────┐
-               │               │               │
-        ┌──────▼──────┐ ┌──────▼──────┐ ┌──────▼──────┐
-        │   Python    │ │  TypeScript │ │     Go      │
-        ├─────────────┤ ├─────────────┤ ├─────────────┤
-        │  pycubrid   │ │cubrid-client│ │  cubrid-go  │
-        │  (DB-API)   │ │  (Native)   │ │(database/sql│
-        ├─────────────┤ ├─────────────┤ ├─────────────┤
-        │ sqlalchemy- │ │  drizzle-   │ │    GORM     │
-        │   cubrid    │ │   cubrid    │ │  dialector  │
-        │   (ORM)     │ │   (ORM)     │ │   (ORM)     │
-        ├─────────────┤ ├─────────────┤ ├─────────────┤
-        │  FastAPI    │ │             │ │             │
-        │  Django     │ │             │ │             │
-        │  Flask      │ │             │ │             │
-        │  Pandas     │ │             │ │             │
-        │  Streamlit  │ │             │ │             │
-        │  Celery     │ │             │ │             │
-        └─────────────┘ └─────────────┘ └─────────────┘
+```mermaid
+flowchart TD
+    C[(CUBRID Database<br/>cubrid/cubrid:11.2<br/>TCP :33000)]
+
+    PY[Python] --> PYD[pycubrid (DB-API)] --> PYO[sqlalchemy-cubrid (ORM)] --> C
+    TS[TypeScript] --> TSD[cubrid-client (Native)] --> TSO[drizzle-cubrid (ORM)] --> C
+    GO[Go] --> GOD[cubrid-go (database/sql)] --> GOO[GORM dialector (ORM)] --> C
+
+    PY --> PYF[FastAPI]
+    PY --> PYJ[Django]
+    PY --> PYL[Flask]
+    PY --> PYP[Pandas]
+    PY --> PYS[Streamlit]
+    PY --> PYC[Celery]
 ```
 
 All packages: [github.com/cubrid-labs](https://github.com/cubrid-labs)

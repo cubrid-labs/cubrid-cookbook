@@ -44,24 +44,27 @@ Notes:
 
 ## Project Structure
 
-```text
-python/flask/
-├── app/
-│   ├── __init__.py
-│   ├── models/
-│   │   └── __init__.py
-│   ├── routes/
-│   │   ├── __init__.py
-│   │   └── products.py
-│   └── templates/
-│       ├── base.html
-│       └── products/
-│           ├── detail.html
-│           ├── form.html
-│           └── list.html
-├── requirements.txt
-├── run.py
-└── README.md
+```mermaid
+flowchart TD
+    ROOT[python/flask/]
+    ROOT --> APP[app/]
+    ROOT --> REQ[requirements.txt]
+    ROOT --> RUN[run.py]
+    ROOT --> RMD[README.md]
+
+    APP --> APIN[__init__.py]
+    APP --> APMD[models/]
+    APP --> APRT[routes/]
+    APP --> APTM[templates/]
+
+    APMD --> AMIN[__init__.py]
+    APRT --> ARIN[__init__.py]
+    APRT --> ARPD[products.py]
+    APTM --> ATBS[base.html]
+    APTM --> ATPR[products/]
+    ATPR --> APDT[detail.html]
+    ATPR --> APFM[form.html]
+    ATPR --> APLS[list.html]
 ```
 
 ## Routes

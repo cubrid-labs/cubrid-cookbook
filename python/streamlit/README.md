@@ -4,29 +4,12 @@ An interactive Streamlit dashboard backed by CUBRID using SQLAlchemy — featuri
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────┐
-│           Streamlit Frontend            │
-│  ┌──────────┐  ┌─────────────────────┐  │
-│  │ Sidebar  │  │  Page Content       │  │
-│  │ Nav      │  │  (Overview /        │  │
-│  │          │  │   Explorer /        │  │
-│  │          │  │   Analytics /       │  │
-│  │          │  │   Raw SQL)          │  │
-│  └──────────┘  └─────────┬───────────┘  │
-│                          │              │
-│  ┌───────────────────────▼───────────┐  │
-│  │  database.py                      │  │
-│  │  SQLAlchemy engine + run_query()  │  │
-│  │  @st.cache_resource               │  │
-│  └───────────────┬───────────────────┘  │
-└──────────────────┼──────────────────────┘
-                   │
-       ┌───────────▼───────────┐
-       │    CUBRID Database    │
-       │    (localhost:33000)  │
-       │    cookbook_orders     │
-       └───────────────────────┘
+```mermaid
+flowchart TD
+    ST[Streamlit]
+    ST --> UI[Sidebar + Page Content]
+    UI --> DB[database.py\nSQLAlchemy engine + run_query()\n@st.cache_resource]
+    DB --> C[(CUBRID\nlocalhost:33000\ncookbook_orders)]
 ```
 
 ## Files

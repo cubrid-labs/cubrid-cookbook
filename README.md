@@ -21,6 +21,34 @@
 
 Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://www.cubrid.org/) with popular frameworks and drivers across multiple languages. Every example connects to a real CUBRID database via Docker.
 
+## Ecosystem Overview
+
+```mermaid
+flowchart LR
+    C[(CUBRID Server)]
+
+    subgraph PY[Python]
+        PYD[pycubrid] --> PYO[SQLAlchemy]
+    end
+
+    subgraph TS[TypeScript]
+        TSD[cubrid-client] --> TSO[Drizzle ORM]
+    end
+
+    subgraph GO[Go]
+        GOD[cubrid-go] --> GOO[GORM]
+    end
+
+    subgraph RS[Rust]
+        RSD[cubrid-rs] --> RSO[SeaORM]
+    end
+
+    PYO --> C
+    TSO --> C
+    GOO --> C
+    RSO --> C
+```
+
 ## Examples
 
 ### 🐍 Python
@@ -128,37 +156,43 @@ make clean
 
 ## Project Structure
 
-```
-cubrid-cookbook/
-├── docker-compose.yml          # Shared CUBRID database
-├── .env.example                # Connection settings template
-├── Makefile                    # Docker shortcuts
-├── python/
-│   ├── pycubrid/               # Direct driver usage
-│   ├── sqlalchemy/             # SQLAlchemy Core + ORM
-│   ├── fastapi/                # FastAPI REST API
-│   ├── django/                 # Django integration
-│   ├── flask/                  # Flask + Flask-SQLAlchemy
-│   ├── pandas/                 # Data analysis
-│   ├── streamlit/              # Data dashboard
-│   ├── celery/                 # Async tasks
-│   └── error-handling/         # Focused Python error patterns
-├── typescript/                 # TypeScript examples + Docker setup
-│   ├── 01_connect.ts
-│   ├── docker-compose.yml
-│   ├── Dockerfile
-│   └── error-handling/
-├── node/
-│   ├── cubrid/                 # cubrid-client direct usage
-│   └── drizzle/                # Drizzle ORM + cubrid-client
-├── go/
-│   ├── cubrid-go/              # database/sql driver
-│   ├── gorm/                   # GORM ORM
-│   └── error-handling/        # Focused Go error patterns
-├── rust/
-│   ├── cubrid-rs/              # Native Rust async driver
-│   ├── sea-orm-cubrid/         # SeaORM backend for CUBRID
-│   └── error-handling/         # Focused Rust error patterns
+```mermaid
+flowchart TD
+    ROOT[cubrid-cookbook/]
+    ROOT --> DC[docker-compose.yml]
+    ROOT --> ENV[.env.example]
+    ROOT --> MK[Makefile]
+    ROOT --> PY[python/]
+    ROOT --> TS[typescript/]
+    ROOT --> ND[node/]
+    ROOT --> GO[go/]
+    ROOT --> RS[rust/]
+
+    PY --> PYC[pycubrid/]
+    PY --> PYSA[sqlalchemy/]
+    PY --> PYFA[fastapi/]
+    PY --> PYDJ[django/]
+    PY --> PYFL[flask/]
+    PY --> PYPD[pandas/]
+    PY --> PYST[streamlit/]
+    PY --> PYCE[celery/]
+    PY --> PYER[error-handling/]
+
+    TS --> TS01[01_connect.ts]
+    TS --> TSDC[docker-compose.yml]
+    TS --> TSDO[Dockerfile]
+    TS --> TSER[error-handling/]
+
+    ND --> NDCB[cubrid/]
+    ND --> NDDR[drizzle/]
+
+    GO --> GOCB[cubrid-go/]
+    GO --> GOGM[gorm/]
+    GO --> GOER[error-handling/]
+
+    RS --> RSCB[cubrid-rs/]
+    RS --> RSSE[sea-orm-cubrid/]
+    RS --> RSER[error-handling/]
 ```
 
 ## Error Handling Cookbook
