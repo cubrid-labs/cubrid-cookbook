@@ -78,9 +78,7 @@ def transform(df: pd.DataFrame):
             avg_unit_price=("unit_price", "mean"),
         ),
     )
-    summary = summary.assign(
-        avg_order_quantity=summary["total_quantity"] / summary["total_orders"]
-    )
+    summary = summary.assign(avg_order_quantity=summary["total_quantity"] / summary["total_orders"])
 
     logging.info(
         "Transformed data: %d cleaned rows, %d summary rows.",
@@ -93,18 +91,14 @@ def transform(df: pd.DataFrame):
 def load(engine, cleaned: pd.DataFrame, summary: pd.DataFrame) -> None:
     # Explicit dtype mapping to avoid FLOAT(53) which exceeds CUBRID max precision (38)
     cleaned_dtypes = {
-        col: sa_types.NUMERIC(15, 4)
-        for col in cleaned.select_dtypes(include=["float64"]).columns
+        col: sa_types.NUMERIC(15, 4) for col in cleaned.select_dtypes(include=["float64"]).columns
     }
     summary_dtypes = {
-        col: sa_types.NUMERIC(15, 4)
-        for col in summary.select_dtypes(include=["float64"]).columns
+        col: sa_types.NUMERIC(15, 4) for col in summary.select_dtypes(include=["float64"]).columns
     }
     cleaned.to_sql(CLEAN_TABLE, engine, if_exists="replace", index=False, dtype=cleaned_dtypes)
     summary.to_sql(SUMMARY_TABLE, engine, if_exists="replace", index=False, dtype=summary_dtypes)
-    logging.info(
-        "Loaded cleaned table '%s' and summary table '%s'.", CLEAN_TABLE, SUMMARY_TABLE
-    )
+    logging.info("Loaded cleaned table '%s' and summary table '%s'.", CLEAN_TABLE, SUMMARY_TABLE)
 
 
 def main() -> int:
