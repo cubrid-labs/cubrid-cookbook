@@ -320,12 +320,13 @@ jobs:
         working-directory: go/${{ matrix.example_set }}
 
       - name: Run standalone Go examples in ${{ matrix.example_set }}
+        working-directory: go/${{ matrix.example_set }}
         run: |
           set +e
           passed=0
           failed=0
 
-          for file in go/${{ matrix.example_set }}/*.go; do
+          for file in *.go; do
             echo "Running $file"
             if go run "$file"; then
               passed=$((passed + 1))
