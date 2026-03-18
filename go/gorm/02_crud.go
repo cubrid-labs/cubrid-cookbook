@@ -1,3 +1,5 @@
+//go:build ignore
+
 // 02_crud.go — CRUD operations with GORM + CUBRID.
 //
 // Demonstrates:

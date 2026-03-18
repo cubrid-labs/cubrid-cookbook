@@ -1,3 +1,5 @@
+//go:build ignore
+
 // 01_connect.go — Connecting to CUBRID with GORM.
 //
 // Demonstrates:

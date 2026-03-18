@@ -1,3 +1,5 @@
+//go:build ignore
+
 // 04_relationships.go — Relationships with GORM + CUBRID.
 //
 // Demonstrates:

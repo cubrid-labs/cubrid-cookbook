@@ -6,6 +6,7 @@ from typing import cast
 
 import pandas as pd
 from sqlalchemy import create_engine, inspect
+from sqlalchemy import types as sa_types
 from sqlalchemy.exc import SQLAlchemyError
 
 DATABASE_URL = "cubrid+pycubrid://dba@localhost:33000/testdb"
@@ -90,8 +91,17 @@ def transform(df: pd.DataFrame):
 
 
 def load(engine, cleaned: pd.DataFrame, summary: pd.DataFrame) -> None:
-    cleaned.to_sql(CLEAN_TABLE, engine, if_exists="replace", index=False)
-    summary.to_sql(SUMMARY_TABLE, engine, if_exists="replace", index=False)
+    # Explicit dtype mapping to avoid FLOAT(53) which exceeds CUBRID max precision (38)
+    cleaned_dtypes = {
+        col: sa_types.NUMERIC(15, 4)
+        for col in cleaned.select_dtypes(include=["float64"]).columns
+    }
+    summary_dtypes = {
+        col: sa_types.NUMERIC(15, 4)
+        for col in summary.select_dtypes(include=["float64"]).columns
+    }
+    cleaned.to_sql(CLEAN_TABLE, engine, if_exists="replace", index=False, dtype=cleaned_dtypes)
+    summary.to_sql(SUMMARY_TABLE, engine, if_exists="replace", index=False, dtype=summary_dtypes)
     logging.info(
         "Loaded cleaned table '%s' and summary table '%s'.", CLEAN_TABLE, SUMMARY_TABLE
     )

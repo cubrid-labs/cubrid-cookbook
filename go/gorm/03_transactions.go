@@ -1,3 +1,5 @@
+//go:build ignore
+
 // 03_transactions.go — Transactions with GORM + CUBRID.
 //
 // Demonstrates:

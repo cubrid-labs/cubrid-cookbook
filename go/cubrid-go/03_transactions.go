@@ -1,3 +1,5 @@
+//go:build ignore
+
 // 03_transactions.go — Transaction control with cubrid-go.
 //
 // Demonstrates:
