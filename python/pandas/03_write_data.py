@@ -73,18 +73,14 @@ def main() -> int:
         print(base_df.head(10).to_string(index=False))
 
         base_df.to_sql(TARGET_TABLE, engine, if_exists="replace", index=False)
-        print(
-            f"Wrote {len(base_df)} rows to '{TARGET_TABLE}' with if_exists='replace'."
-        )
+        print(f"Wrote {len(base_df)} rows to '{TARGET_TABLE}' with if_exists='replace'.")
 
         append_df = source_df.iloc[25:35].copy()
         append_df.to_sql(TARGET_TABLE, engine, if_exists="append", index=False)
         print(f"Appended {len(append_df)} rows with if_exists='append'.")
 
         chunk_df = build_chunk_rows(start_id=10_000, rows=50)
-        chunk_df.to_sql(
-            TARGET_TABLE, engine, if_exists="append", index=False, chunksize=10
-        )
+        chunk_df.to_sql(TARGET_TABLE, engine, if_exists="append", index=False, chunksize=10)
         print(f"Appended {len(chunk_df)} rows using chunked to_sql(chunksize=10).")
 
         total_df = pd.read_sql_query(

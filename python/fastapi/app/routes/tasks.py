@@ -46,16 +46,12 @@ def list_tasks(
 def get_task(task_id: int, db: Annotated[Session, Depends(get_db)]) -> TaskResponse:
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
     return TaskResponse.model_validate(task)
 
 
 @router.post("", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)
-def create_task(
-    payload: TaskCreate, db: Annotated[Session, Depends(get_db)]
-) -> TaskResponse:
+def create_task(payload: TaskCreate, db: Annotated[Session, Depends(get_db)]) -> TaskResponse:
     task = Task(
         title=payload.title,
         description=payload.description,
@@ -76,9 +72,7 @@ def update_task(
 ) -> TaskResponse:
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
 
     updates = cast(dict[str, object], payload.model_dump(exclude_unset=True))
     for field_name, value in updates.items():
@@ -94,9 +88,7 @@ def update_task(
 def delete_task(task_id: int, db: Annotated[Session, Depends(get_db)]) -> Response:
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
 
     db.delete(task)
     db.commit()

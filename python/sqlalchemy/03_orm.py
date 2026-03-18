@@ -150,12 +150,7 @@ def query_advanced(engine) -> None:
         # Pagination (LIMIT/OFFSET)
         page_size = 2
         for page in range(1, 4):
-            stmt = (
-                select(Book)
-                .order_by(Book.id)
-                .limit(page_size)
-                .offset((page - 1) * page_size)
-            )
+            stmt = select(Book).order_by(Book.id).limit(page_size).offset((page - 1) * page_size)
             books = session.scalars(stmt).all()
             if not books:
                 break
@@ -185,9 +180,7 @@ def update_books(engine) -> None:
             old_price = book.price
             book.price = 42.99
             session.commit()
-            print(
-                f"  ✓ Updated 'Clean Code' price: ${old_price:.2f} → ${book.price:.2f}"
-            )
+            print(f"  ✓ Updated 'Clean Code' price: ${old_price:.2f} → ${book.price:.2f}")
 
         # Bulk update
         stmt = select(Book).where(Book.pages > 400)

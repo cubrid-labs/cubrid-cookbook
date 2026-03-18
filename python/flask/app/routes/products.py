@@ -45,9 +45,7 @@ def _product_or_404(product_id: int) -> Product:
 
 @products_bp.get("/products")
 def list_products():
-    products = (
-        db.session.execute(select(Product).order_by(Product.id.desc())).scalars().all()
-    )
+    products = db.session.execute(select(Product).order_by(Product.id.desc())).scalars().all()
     return render_template("products/list.html", products=products)
 
 
@@ -162,9 +160,7 @@ def delete_product(product_id: int):
 
 @products_bp.get("/api/products")
 def api_list_products():
-    products = (
-        db.session.execute(select(Product).order_by(Product.id.desc())).scalars().all()
-    )
+    products = db.session.execute(select(Product).order_by(Product.id.desc())).scalars().all()
     return jsonify([product.to_dict() for product in products])
 
 

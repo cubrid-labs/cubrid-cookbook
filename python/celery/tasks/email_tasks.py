@@ -30,9 +30,7 @@ def _finish_job(job_id: int, status: str, payload: dict[str, Any]) -> None:
         job.completed_at = datetime.now(timezone.utc)
 
 
-@app.task(
-    bind=True, max_retries=3, default_retry_delay=2, name="tasks.send_notification"
-)
+@app.task(bind=True, max_retries=3, default_retry_delay=2, name="tasks.send_notification")
 def send_notification(
     self,
     recipient: str,

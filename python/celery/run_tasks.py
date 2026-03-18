@@ -33,15 +33,9 @@ def seed_sales_data() -> None:
 
         session.add_all(
             [
-                SalesRecord(
-                    product_name="laptop", quantity=2, amount=Decimal("1800.00")
-                ),
-                SalesRecord(
-                    product_name="monitor", quantity=4, amount=Decimal("900.00")
-                ),
-                SalesRecord(
-                    product_name="keyboard", quantity=10, amount=Decimal("650.00")
-                ),
+                SalesRecord(product_name="laptop", quantity=2, amount=Decimal("1800.00")),
+                SalesRecord(product_name="monitor", quantity=4, amount=Decimal("900.00")),
+                SalesRecord(product_name="keyboard", quantity=10, amount=Decimal("650.00")),
             ]
         )
 
@@ -56,9 +50,7 @@ def print_recent_jobs(limit: int = 10) -> None:
 
         print("\nRecent cookbook_jobs entries:")
         for job in jobs:
-            print(
-                f"- id={job.id} task={job.task_name} status={job.status} result={job.result}"
-            )
+            print(f"- id={job.id} task={job.task_name} status={job.status} result={job.result}")
 
 
 def run_standalone() -> None:

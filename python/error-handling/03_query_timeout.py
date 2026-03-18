@@ -70,23 +70,17 @@ def main() -> None:
             )
             """
         )
-        _ = writer.execute(
-            "INSERT INTO cookbook_timeout_demo (id, note) VALUES (1, 'initial')"
-        )
+        _ = writer.execute("INSERT INTO cookbook_timeout_demo (id, note) VALUES (1, 'initial')")
         writer_conn.commit()
 
         writer_conn.autocommit = False
         blocked_conn.autocommit = False
 
-        _ = writer.execute(
-            "UPDATE cookbook_timeout_demo SET note = 'locked' WHERE id = 1"
-        )
+        _ = writer.execute("UPDATE cookbook_timeout_demo SET note = 'locked' WHERE id = 1")
         _ = blocked.execute("SET SYSTEM PARAMETERS 'lock_timeout=1'")
 
         try:
-            _ = blocked.execute(
-                "UPDATE cookbook_timeout_demo SET note = 'blocked' WHERE id = 1"
-            )
+            _ = blocked.execute("UPDATE cookbook_timeout_demo SET note = 'blocked' WHERE id = 1")
             blocked_conn.commit()
         except driver.OperationalError as error:
             blocked_conn.rollback()

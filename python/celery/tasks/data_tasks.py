@@ -35,17 +35,13 @@ def _finish_job(job_id: int, status: str, payload: dict[str, Any]) -> None:
 
 
 @app.task(name="tasks.aggregate_sales")
-def aggregate_sales(
-    start_date: str | None = None, end_date: str | None = None
-) -> dict[str, Any]:
+def aggregate_sales(start_date: str | None = None, end_date: str | None = None) -> dict[str, Any]:
     job_id = _start_job("aggregate_sales")
     start_dt = datetime.fromisoformat(start_date) if start_date else None
     end_dt = datetime.fromisoformat(end_date) if end_date else None
 
     with session_scope() as session:
-        stmt = select(
-            func.count(SalesRecord.id), func.coalesce(func.sum(SalesRecord.amount), 0)
-        )
+        stmt = select(func.count(SalesRecord.id), func.coalesce(func.sum(SalesRecord.amount), 0))
         if start_dt is not None:
             stmt = stmt.where(SalesRecord.created_at >= start_dt)
         if end_dt is not None:
@@ -108,9 +104,7 @@ def cleanup_old_records(days: int = 30) -> dict[str, int]:
             .all()
         )
         old_reports = (
-            session.execute(select(Report.id).where(Report.created_at < threshold))
-            .scalars()
-            .all()
+            session.execute(select(Report.id).where(Report.created_at < threshold)).scalars().all()
         )
 
         deleted_jobs = len(old_jobs)

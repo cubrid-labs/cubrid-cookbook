@@ -69,17 +69,14 @@ def render_data_explorer() -> None:
     regions = sorted(orders_df["region"].dropna().unique().tolist())
 
     search_term = st.text_input("Search product", placeholder="Try: Laptop")
-    selected_categories = st.multiselect(
-        "Category filter", categories, default=categories
-    )
+    selected_categories = st.multiselect("Category filter", categories, default=categories)
     selected_regions = st.multiselect("Region filter", regions, default=regions)
 
     all_columns = orders_df.columns.tolist()
     selected_columns = st.multiselect("Columns", all_columns, default=all_columns)
 
     filtered = orders_df[
-        orders_df["category"].isin(selected_categories)
-        & orders_df["region"].isin(selected_regions)
+        orders_df["category"].isin(selected_categories) & orders_df["region"].isin(selected_regions)
     ]
     filtered = pd.DataFrame(filtered)
 
@@ -90,9 +87,7 @@ def render_data_explorer() -> None:
         filtered = filtered.loc[search_mask]
 
     if selected_columns:
-        st.dataframe(
-            filtered[selected_columns], use_container_width=True, hide_index=True
-        )
+        st.dataframe(filtered[selected_columns], use_container_width=True, hide_index=True)
     else:
         st.warning("Select at least one column to display results.")
 

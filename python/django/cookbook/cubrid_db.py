@@ -17,9 +17,7 @@ _session_factory: sessionmaker[Session] | None = None
 
 
 class CursorLike(Protocol):
-    def execute(
-        self, operation: str, parameters: tuple[object, ...] | None = None
-    ) -> object: ...
+    def execute(self, operation: str, parameters: tuple[object, ...] | None = None) -> object: ...
 
     def fetchone(self) -> tuple[object, ...] | None: ...
 

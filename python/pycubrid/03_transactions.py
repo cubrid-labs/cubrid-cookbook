@@ -34,12 +34,8 @@ def setup(conn: pycubrid.Connection) -> None:
             balance DOUBLE DEFAULT 0.0
         )
     """)
-    cursor.execute(
-        "INSERT INTO cookbook_accounts (name, balance) VALUES ('Alice', 1000.0)"
-    )
-    cursor.execute(
-        "INSERT INTO cookbook_accounts (name, balance) VALUES ('Bob', 500.0)"
-    )
+    cursor.execute("INSERT INTO cookbook_accounts (name, balance) VALUES ('Alice', 1000.0)")
+    cursor.execute("INSERT INTO cookbook_accounts (name, balance) VALUES ('Bob', 500.0)")
     conn.commit()
     cursor.close()
 
@@ -106,9 +102,7 @@ def autocommit_example() -> None:
     conn.autocommit = True
 
     cursor = conn.cursor()
-    cursor.execute(
-        "UPDATE cookbook_accounts SET balance = balance + 50 WHERE name = 'Alice'"
-    )
+    cursor.execute("UPDATE cookbook_accounts SET balance = balance + 50 WHERE name = 'Alice'")
     print("  ✓ Updated Alice +$50 (auto-committed immediately)")
 
     # No need to call conn.commit()
@@ -127,9 +121,7 @@ def savepoint_example(conn: pycubrid.Connection) -> None:
     cursor = conn.cursor()
 
     # Step 1: Give Alice a bonus
-    cursor.execute(
-        "UPDATE cookbook_accounts SET balance = balance + 100 WHERE name = 'Alice'"
-    )
+    cursor.execute("UPDATE cookbook_accounts SET balance = balance + 100 WHERE name = 'Alice'")
     print("  Step 1: Alice +$100")
 
     # Create savepoint after step 1
@@ -137,9 +129,7 @@ def savepoint_example(conn: pycubrid.Connection) -> None:
     print("  ✓ Created SAVEPOINT 'after_alice_bonus'")
 
     # Step 2: Give Bob a bonus (we'll undo this)
-    cursor.execute(
-        "UPDATE cookbook_accounts SET balance = balance + 999 WHERE name = 'Bob'"
-    )
+    cursor.execute("UPDATE cookbook_accounts SET balance = balance + 999 WHERE name = 'Bob'")
     print("  Step 2: Bob +$999 (will be rolled back)")
 
     # Rollback to savepoint — undoes step 2 but keeps step 1

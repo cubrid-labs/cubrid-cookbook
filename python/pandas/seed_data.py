@@ -49,9 +49,7 @@ def build_sales_rows(total_rows: int = 180, seed: int = 42) -> list[dict[str, ob
             Decimal("0.0001"),
             rounding=ROUND_HALF_UP,
         )
-        unit_price = (base_price * price_factor).quantize(
-            Decimal("0.01"), rounding=ROUND_HALF_UP
-        )
+        unit_price = (base_price * price_factor).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
         rows.append(
             {

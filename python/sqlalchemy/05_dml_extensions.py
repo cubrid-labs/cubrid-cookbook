@@ -203,9 +203,7 @@ def merge_example(engine) -> None:
             merge(counters_table)
             .using(counter_source)
             .on(counters_table.c.name == counter_source.c.name)
-            .when_matched_then_update(
-                {"count": counters_table.c.count + counter_source.c.count}
-            )
+            .when_matched_then_update({"count": counters_table.c.count + counter_source.c.count})
             .when_not_matched_then_insert(
                 {
                     counters_table.c.name: counter_source.c.name,

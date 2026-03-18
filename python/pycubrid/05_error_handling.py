@@ -115,18 +115,14 @@ def integrity_error_example() -> None:
 
     # Duplicate primary key
     try:
-        cursor.execute(
-            "INSERT INTO cookbook_err_test (id, email) VALUES (1, 'b@test.com')"
-        )
+        cursor.execute("INSERT INTO cookbook_err_test (id, email) VALUES (1, 'b@test.com')")
     except pycubrid.IntegrityError as e:
         conn.rollback()
         print(f"  ✓ Caught IntegrityError (duplicate PK): {e}")
 
     # Duplicate unique constraint
     try:
-        cursor.execute(
-            "INSERT INTO cookbook_err_test (id, email) VALUES (2, 'a@test.com')"
-        )
+        cursor.execute("INSERT INTO cookbook_err_test (id, email) VALUES (2, 'a@test.com')")
     except pycubrid.IntegrityError as e:
         conn.rollback()
         print(f"  ✓ Caught IntegrityError (duplicate UNIQUE): {e}")
