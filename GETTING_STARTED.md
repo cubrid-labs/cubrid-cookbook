@@ -96,8 +96,7 @@ npm install drizzle-cubrid drizzle-orm cubrid-client
 
 ```typescript
 import { createClient } from "cubrid-client";
-import { drizzle } from "drizzle-cubrid";
-import { cubridTable, varchar, integer, serial } from "drizzle-cubrid/columns";
+import { drizzle, cubridTable, varchar, integer, serial, sql } from "drizzle-cubrid";
 
 // Define schema
 const users = cubridTable("users", {
