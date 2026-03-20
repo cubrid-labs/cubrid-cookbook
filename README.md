@@ -329,6 +329,13 @@ See the [Django example](python/django/) — Django project using CUBRID via SQL
 See the [Pandas example](python/pandas/) — data analysis pipeline with `read_sql`, DataFrame transforms, and visualization using pycubrid or sqlalchemy-cubrid.
 
 
+
+## Roadmap
+
+See [`ROADMAP.md`](ROADMAP.md) for this project's direction and next milestones.
+
+For the ecosystem-wide view, see the [CUBRID Labs Ecosystem Roadmap](https://github.com/cubrid-labs/.github/blob/main/ROADMAP.md) and [Project Board](https://github.com/orgs/cubrid-labs/projects/2).
+
 ## Contributing
 
 Found a bug or want to add an example? PRs welcome! Each example should be self-contained and independently runnable.
