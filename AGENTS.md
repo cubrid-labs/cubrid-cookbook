@@ -19,3 +19,21 @@
 - `make up`
 - Run the smallest relevant example for the language you changed.
 - `make down`
+
+## Competition Context (공모전 — Performance Loop System)
+
+> This repo provides the **reproducible demo** for competition judges.
+> Timeline: 2026-03-25 ~ 2026-11-04
+> Board: [CUBRID Ecosystem Roadmap](https://github.com/orgs/cubrid-labs/projects/2)
+
+### Competition Role
+
+cubrid-cookbook must enable `docker compose up && make demo` for judges to experience the ecosystem.
+All examples must produce predictable, verifiable output.
+
+### Competition Issues on This Repo
+
+| Issue | Phase | Priority |
+|-------|-------|----------|
+| #7 Standardize expected outputs and one-command demo | R5 | Must-Have |
+| #5 Verify Rust examples after crates.io publish | R4 | Nice-to-Have |
