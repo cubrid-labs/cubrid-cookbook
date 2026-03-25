@@ -1,4 +1,5 @@
-.PHONY: help up down status clean
+SHELL := /bin/bash
+.PHONY: help up down status clean verify
 
 DOCKER_COMPOSE := docker compose
 
@@ -23,3 +24,36 @@ status: ## Show container status
 clean: ## Stop and remove all data
 	$(DOCKER_COMPOSE) down -v
 	@echo "✓ Cleaned up all containers and volumes"
+
+NORMALIZE := bash scripts/normalize_output.sh
+PYTHON := python
+
+verify: ## Verify example outputs against expected results
+	@echo "Verifying example outputs..."
+	@PASS=0; FAIL=0; SKIP=0; \
+	for expected in $$(find . -path '*/expected/*.expected' | sort); do \
+		dir=$$(dirname "$$(dirname "$$expected")"); \
+		base=$$(basename "$$expected" .expected); \
+		script="$$dir/$$base.py"; \
+		if [ ! -f "$$script" ]; then \
+			script="$$dir/$$base.go"; \
+		fi; \
+		if [ ! -f "$$script" ]; then \
+			echo "  SKIP $$expected (no matching script)"; \
+			SKIP=$$((SKIP + 1)); \
+			continue; \
+		fi; \
+		actual=$$($(PYTHON) "$$script" 2>&1 | $(NORMALIZE)); \
+		expected_content=$$(cat "$$expected"); \
+		if [ "$$actual" = "$$expected_content" ]; then \
+			echo "  ✓ PASS $$script"; \
+			PASS=$$((PASS + 1)); \
+		else \
+			echo "  ✗ FAIL $$script"; \
+			diff <(echo "$$actual") <(echo "$$expected_content") || true; \
+			FAIL=$$((FAIL + 1)); \
+		fi; \
+	done; \
+	echo ""; \
+	echo "Results: $$PASS passed, $$FAIL failed, $$SKIP skipped"; \
+	[ "$$FAIL" -eq 0 ]
