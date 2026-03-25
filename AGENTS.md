@@ -20,18 +20,17 @@
 - Run the smallest relevant example for the language you changed.
 - `make down`
 
-## Competition Context (공모전 — Performance Loop System)
+## Project Context — Performance Loop System
 
-> This repo provides the **reproducible demo** for competition judges.
-> Timeline: 2026-03-25 ~ 2026-11-04
+> This repo provides the **reproducible demo** for the ecosystem.
 > Board: [CUBRID Ecosystem Roadmap](https://github.com/orgs/cubrid-labs/projects/2)
 
-### Competition Role
+### Role
 
-cubrid-cookbook must enable `docker compose up && make demo` for judges to experience the ecosystem.
+cubrid-cookbook must enable `docker compose up && make demo` for anyone to experience the ecosystem.
 All examples must produce predictable, verifiable output.
 
-### Competition Issues on This Repo
+### Related Issues
 
 | Issue | Phase | Priority |
 |-------|-------|----------|
