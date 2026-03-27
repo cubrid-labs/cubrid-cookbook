@@ -1,0 +1,2 @@
+pycubrid>=0.5
+sqlalchemy-cubrid>=1.0

@@ -1,6 +1,0 @@
-fastapi
-uvicorn[standard]
-sqlalchemy>=2.0
-sqlalchemy-cubrid @ git+https://github.com/cubrid-labs/sqlalchemy-cubrid.git@main
-pycubrid @ git+https://github.com/cubrid-labs/pycubrid.git@main
-pydantic>=2.0
