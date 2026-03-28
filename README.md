@@ -5,6 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CUBRID 11.2](https://img.shields.io/badge/CUBRID-11.2-green.svg)](https://www.cubrid.org/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+![pycubrid](https://img.shields.io/badge/pycubrid-v0.6.0-blue)
+![sqlalchemy-cubrid](https://img.shields.io/badge/sqlalchemy--cubrid-v2.1.1-blue)
+![status](https://img.shields.io/badge/status-active%20development-yellow)
 
 ---
 
