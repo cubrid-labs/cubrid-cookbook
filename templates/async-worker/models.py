@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from sqlalchemy import DateTime, Integer, Numeric, String, Text, func  # type: ignore[import-not-found]
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column  # type: ignore[import-not-found]
+from sqlalchemy import DateTime, Integer, Numeric, String, Text, func
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):

@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from typing import Any
 
-from sqlalchemy import delete, func, select  # type: ignore[import-not-found]
+from sqlalchemy import delete, func, select
 
 app = import_module("app").app
 session_scope = import_module("database").session_scope

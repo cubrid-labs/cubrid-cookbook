@@ -16,7 +16,7 @@ from sqlalchemy import (
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
 
-DATABASE_URL = "cubrid+pycubrid://dba@localhost:33000/demodb"
+DATABASE_URL = "cubrid+pycubrid://dba@localhost:33000/testdb"
 
 metadata = MetaData()
 

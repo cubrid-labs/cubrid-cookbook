@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import celery  # pyright: ignore[reportMissingImports]
+import celery
 
 BROKER_URL = "redis://localhost:6379/0"
 DATABASE_URL = "cubrid+pycubrid://dba@localhost:33000/testdb"
