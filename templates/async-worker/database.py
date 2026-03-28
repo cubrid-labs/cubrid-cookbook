@@ -3,8 +3,8 @@ from __future__ import annotations
 from contextlib import contextmanager
 from collections.abc import Iterator
 
-from sqlalchemy import create_engine  # type: ignore[import-not-found]
-from sqlalchemy.orm import Session, sessionmaker  # type: ignore[import-not-found]
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session, sessionmaker
 
 DATABASE_URL = "cubrid+pycubrid://dba@localhost:33000/testdb"
 

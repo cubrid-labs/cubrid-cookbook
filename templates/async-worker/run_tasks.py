@@ -4,7 +4,7 @@ import argparse
 from decimal import Decimal
 from importlib import import_module
 
-from sqlalchemy import func, select  # type: ignore[import-not-found]
+from sqlalchemy import func, select
 
 app = import_module("app").app
 database = import_module("database")

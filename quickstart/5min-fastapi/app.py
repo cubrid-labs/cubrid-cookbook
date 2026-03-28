@@ -53,8 +53,7 @@ def create_item(item: ItemIn) -> ItemOut:
     cursor = conn.cursor()
     cursor.execute("INSERT INTO cookbook_items (val) VALUES (?)", (item.val,))
     conn.commit()
-    cursor.execute("SELECT LAST_INSERT_ID()")
-    item_id = cursor.fetchone()[0]
+    item_id = cursor.lastrowid
     cursor.close()
     conn.close()
     return ItemOut(id=item_id, val=item.val)
