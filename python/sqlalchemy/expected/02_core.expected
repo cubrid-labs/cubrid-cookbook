@@ -1,0 +1,49 @@
+=== Create Tables ===
+  ✓ Created tables: cookbook_departments, cookbook_employees
+
+=== Core INSERT ===
+  ✓ Inserted 3 departments
+  ✓ Inserted 5 employees
+
+=== Core SELECT ===
+  All employees:
+    1: Alice       alice@company.com          $95,000
+    2: Bob         bob@company.com            $85,000
+    3: Charlie     charlie@company.com        $75,000
+    4: Diana       diana@company.com          $90,000
+    5: Eve         eve@company.com            $80,000
+
+  High earners (>= $85k):
+    Alice       $95,000
+    Diana       $90,000
+    Bob         $85,000
+
+=== Core JOIN ===
+  Employee      Department           Salary
+  --------      ----------           ------
+  Alice         Engineering      $   95,000
+  Bob           Engineering      $   85,000
+  Charlie       Marketing        $   75,000
+  Diana         Marketing        $   90,000
+  Eve           Sales            $   80,000
+
+=== Core Aggregation ===
+  Department       Count    Avg Salary         Total
+  ----------       -----    ----------         -----
+  Engineering          2  $     90,000  $    180,000
+  Marketing            2  $     82,500  $    165,000
+  Sales                1  $     80,000  $     80,000
+
+=== Raw SQL with text() ===
+  Total employees: 5
+  Employees with salary > $80k:
+    Alice       $95,000
+    Diana       $90,000
+    Bob         $85,000
+
+=== Core UPDATE & DELETE ===
+  ✓ Gave Engineering 10% raise (2 rows)
+    Alice       $104,500
+    Bob         $93,500
+
+✓ Cleaned up

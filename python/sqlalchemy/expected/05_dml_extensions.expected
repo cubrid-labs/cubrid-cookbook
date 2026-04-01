@@ -1,0 +1,36 @@
+=== DML Extensions — Setup ===
+  ✓ Created tables
+
+=== ON DUPLICATE KEY UPDATE ===
+  Initial insert:
+    app.name             = CUBRID Cookbook       (Application name)
+
+  After ODKU (updated value):
+    app.name             = CUBRID Cookbook v2    (Updated application name)
+
+  After ODKU (new key inserted):
+    app.name             = CUBRID Cookbook v2    (Updated application name)
+    app.version          = 1.0.0                 (Application version)
+
+=== REPLACE INTO ===
+  Initial REPLACE (insert):
+    app.name             = CUBRID Cookbook v2    (Updated application name)
+    app.version          = 1.0.0                 (Application version)
+    db.host              = localhost             (Database host)
+
+  After REPLACE (replaced):
+    app.name             = CUBRID Cookbook v2    (Updated application name)
+    app.version          = 1.0.0                 (Application version)
+    db.host              = production.db.local   (Production database host)
+
+=== MERGE Statement ===
+  Initial counters:
+    page_views: 100
+    api_calls: 50
+
+  After MERGE (increment existing, insert new):
+    api_calls: 55
+    errors: 1
+    page_views: 110
+
+✓ Cleaned up

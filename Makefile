@@ -26,7 +26,7 @@ clean: ## Stop and remove all data
 	@echo "✓ Cleaned up all containers and volumes"
 
 NORMALIZE := bash scripts/normalize_output.sh
-PYTHON := python
+PYTHON := .venv/bin/python
 
 verify: ## Verify example outputs against expected results
 	@echo "Verifying example outputs..."
