@@ -34,16 +34,25 @@ verify: ## Verify example outputs against expected results
 	for expected in $$(find . -path '*/expected/*.expected' | sort); do \
 		dir=$$(dirname "$$(dirname "$$expected")"); \
 		base=$$(basename "$$expected" .expected); \
-		script="$$dir/$$base.py"; \
-		if [ ! -f "$$script" ]; then \
-			script="$$dir/$$base.go"; \
-		fi; \
-		if [ ! -f "$$script" ]; then \
+		script=""; \
+		for ext in py go js ts; do \
+			if [ -f "$$dir/$$base.$$ext" ]; then \
+				script="$$dir/$$base.$$ext"; \
+				break; \
+			fi; \
+		done; \
+		if [ -z "$$script" ]; then \
 			echo "  SKIP $$expected (no matching script)"; \
 			SKIP=$$((SKIP + 1)); \
 			continue; \
 		fi; \
-		actual=$$($(PYTHON) "$$script" 2>&1 | $(NORMALIZE)); \
+		runner=$$(case "$$script" in *.py) echo "$(PYTHON)";; *.go) echo "go run";; *.js) echo "node";; *.ts) echo "npx ts-node";; *) echo "$(PYTHON)";; esac); \
+		actual=$$(set -o pipefail; $$runner "$$script" 2>&1 | $(NORMALIZE)); \
+		if [ $$? -ne 0 ]; then \
+			echo "  ✗ FAIL $$script (script error)"; \
+			FAIL=$$((FAIL + 1)); \
+			continue; \
+		fi; \
 		expected_content=$$(cat "$$expected"); \
 		if [ "$$actual" = "$$expected_content" ]; then \
 			echo "  ✓ PASS $$script"; \
