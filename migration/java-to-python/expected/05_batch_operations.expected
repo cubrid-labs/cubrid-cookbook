@@ -1,0 +1,17 @@
+=== Batch INSERT ===
+executemany: inserted 1000 rows in {{TIME}}ms
+
+=== Batch UPDATE ===
+batch update: updated 10 rows
+
+=== Batch DELETE ===
+batch delete: removed 10 rows (WHERE cnt=999)
+
+Total rows remaining: 990
+
+=== Batch INSERT (chunked) ===
+chunked (500/commit): inserted 2000 rows in {{TIME}}ms
+
+=== Batch INSERT (single commit) ===
+single commit: inserted 2000 rows in {{TIME}}ms
+Cleaned up

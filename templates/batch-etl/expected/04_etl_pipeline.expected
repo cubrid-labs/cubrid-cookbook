@@ -1,0 +1,40 @@
+{{TIMESTAMP}} | INFO | Extracted 180 rows from cookbook_sales.
+{{TIMESTAMP}} | INFO | Transformed data: 180 cleaned rows, 93 summary rows.
+{{TIMESTAMP}} | INFO | Loaded cleaned table 'cookbook_sales_cleaned' and summary table 'cookbook_sales_summary'.
+=== ETL Completed: Cleaned Data Preview ===
+ sale_id  sale_date                 product    category  quantity  unit_price  region sales_channel  is_promo  revenue year_month
+       1 {{DATE}} Noise-Cancel Headphones Electronics         8      225.67   South        Online         0  1805.36    2025-03
+       2 {{DATE}} Noise-Cancel Headphones Electronics         1      260.85   North        Online         0   260.85    2025-01
+       3 {{DATE}}         Notebook Pro 14 Electronics        18     1351.35    West        Online         1 24324.30    2025-06
+       4 {{DATE}}            Water Bottle Accessories         6       26.46    West        Retail         1   158.76    2025-01
+       5 {{DATE}}            Office Chair   Furniture         4      180.27   North        Retail         0   721.08    2025-03
+       6 {{DATE}}                Backpack Accessories         9       87.84   North   Distributor         1   790.56    2025-06
+       7 {{DATE}} Noise-Cancel Headphones Electronics         3      284.68 Central        Retail         1   854.04    2025-04
+       8 {{DATE}}           Standing Desk   Furniture         8      536.97    East        Online         0  4295.76    2025-01
+       9 {{DATE}} Noise-Cancel Headphones Electronics        12      247.76   South        Retail         1  2973.12    2025-04
+      10 {{DATE}}           Standing Desk   Furniture         3      532.68 Central   Distributor         0  1598.04    2025-06
+      11 {{DATE}}           Standing Desk   Furniture         9      469.51 Central        Online         1  4225.59    2025-04
+      12 {{DATE}}         Notebook Pro 14 Electronics        11     1243.53    West        Retail         0 13678.83    2025-01
+
+=== ETL Completed: Summary Preview ===
+year_month    category  region  total_orders  total_quantity  total_revenue  avg_unit_price  avg_order_quantity
+   2025-01 Accessories Central             1              13         989.04       76.080000                13.0
+   2025-01 Accessories    East             1              19         500.27       26.330000                19.0
+   2025-01 Accessories   South             2              10         833.24       58.020000                 5.0
+   2025-01 Accessories    West             2               7         183.10       25.400000                 3.5
+   2025-01 Electronics   North             3              15       11292.93      670.046667                 5.0
+   2025-01 Electronics   South             1              16        3966.40      247.900000                16.0
+   2025-01 Electronics    West             2              21       16006.73      738.160000                10.5
+   2025-01   Furniture    East             3              24        9335.06      416.640000                 8.0
+   2025-01   Furniture   North             1              19        4098.11      215.690000                19.0
+   2025-01   Furniture    West             2              26        6904.48      367.555000                13.0
+   2025-01     Grocery Central             1               9         156.42       17.380000                 9.0
+   2025-01     Grocery    East             5              51        1327.23       26.002000                10.2
+   2025-01     Grocery    West             2              31         810.63       26.385000                15.5
+   2025-02 Accessories Central             1              20         524.00       26.200000                20.0
+   2025-02 Accessories   North             2              13         731.79       50.040000                 6.5
+   2025-02 Accessories    West             1              17        1282.31       75.430000                17.0
+   2025-02 Electronics Central             2              30       25941.74      825.280000                15.0
+   2025-02 Electronics    East             1               7        1981.63      283.090000                 7.0
+   2025-02 Electronics   North             1               9       12591.18     1399.020000                 9.0
+   2025-02 Electronics    West             1               4        5193.40     1298.350000                 4.0

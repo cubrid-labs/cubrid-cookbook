@@ -15,6 +15,7 @@ grep -v 'set the .inherit_cache' | \
 grep -v 'this attribute may be set' | \
 sed -E \
   -e 's/CUBRID version: [0-9.]+/CUBRID version: {{VERSION}}/g' \
+  -e 's/^(Version:[[:space:]]+)[0-9.]+/\1{{VERSION}}/g' \
   -e 's/DBA@[a-zA-Z0-9_.-]+/DBA@{{HOSTNAME}}/g' \
   -e 's/[0-9]{4}-[0-9]{2}-[0-9]{2}/{{DATE}}/g' \
   -e 's/in [0-9]+\.[0-9]+ms/in {{TIME}}ms/g' \

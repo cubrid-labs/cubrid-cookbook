@@ -73,7 +73,7 @@ class Product(Base):
     price: Mapped[float] = mapped_column(default=0.0)
 
     def __repr__(self) -> str:
-        return f"Product(id={self.id}, val={self.val!r}, cnt={self.cnt}, price={self.price})"
+        return f"Product(id={self.id}, val={self.val!r}, cnt={self.cnt}, price={self.price:.2f})"
 
 
 def create_tables(engine) -> None:

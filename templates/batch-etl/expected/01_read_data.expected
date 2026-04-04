@@ -1,0 +1,46 @@
+=== pd.read_sql_query() with raw SQL ===
+ sale_date                 product    category  quantity  unit_price  region  revenue
+{{DATE}} Noise-Cancel Headphones Electronics        13      232.72   South  3025.36
+{{DATE}}            Water Bottle Accessories         4       23.44   South    93.76
+{{DATE}} Noise-Cancel Headphones Electronics         6      281.77    West  1690.62
+{{DATE}}            Office Chair   Furniture         6      213.83   South  1282.98
+{{DATE}}          Espresso Beans     Grocery         5       18.94   North    94.70
+{{DATE}}            Water Bottle Accessories        15       26.89 Central   403.35
+{{DATE}}            Protein Bars     Grocery         9       32.40 Central   291.60
+{{DATE}}         Notebook Pro 14 Electronics         7     1414.09   North  9898.63
+{{DATE}}            Office Chair   Furniture         6      200.21    West  1201.26
+{{DATE}}                Backpack Accessories         6       81.58    East   489.48
+{{DATE}} Noise-Cancel Headphones Electronics         8      225.67   South  1805.36
+{{DATE}} Noise-Cancel Headphones Electronics        16      256.10   South  4097.60
+Rows returned: 135
+
+=== pd.read_sql() with table name ===
+ sale_id  sale_date                 product    category  quantity  unit_price  region sales_channel  is_promo
+       1 {{DATE}} Noise-Cancel Headphones Electronics         8      225.67   South        Online         0
+       2 {{DATE}} Noise-Cancel Headphones Electronics         1      260.85   North        Online         0
+       3 {{DATE}}         Notebook Pro 14 Electronics        18     1351.35    West        Online         1
+       4 {{DATE}}            Water Bottle Accessories         6       26.46    West        Retail         1
+       5 {{DATE}}            Office Chair   Furniture         4      180.27   North        Retail         0
+       6 {{DATE}}                Backpack Accessories         9       87.84   North   Distributor         1
+       7 {{DATE}} Noise-Cancel Headphones Electronics         3      284.68 Central        Retail         1
+       8 {{DATE}}           Standing Desk   Furniture         8      536.97    East        Online         0
+Rows in cookbook_sales: 180
+
+=== pd.read_sql_table() selecting columns ===
+ sale_date                 product  region  quantity  unit_price
+{{DATE}} Noise-Cancel Headphones   South         8      225.67
+{{DATE}} Noise-Cancel Headphones   North         1      260.85
+{{DATE}}         Notebook Pro 14    West        18     1351.35
+{{DATE}}            Water Bottle    West         6       26.46
+{{DATE}}            Office Chair   North         4      180.27
+{{DATE}}                Backpack   North         9       87.84
+{{DATE}} Noise-Cancel Headphones Central         3      284.68
+{{DATE}}           Standing Desk    East         8      536.97
+
+=== Quick metric: Revenue by region (from read_sql_table data) ===
+ region   revenue
+Central 132711.58
+   East 120533.60
+   West 108417.01
+  North 103332.82
+  South  85776.75

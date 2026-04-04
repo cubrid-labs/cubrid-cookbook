@@ -1,0 +1,36 @@
+Created table 'cookbook_products'
+Inserted 5 products
+  Product(id=1, val='Widget A', cnt=10, price=29.99)
+  Product(id=2, val='Widget B', cnt=5, price=19.99)
+  Product(id=3, val='Gadget C', cnt=20, price=49.99)
+  Product(id=4, val='Part D', cnt=100, price=2.50)
+  Product(id=5, val='Tool E', cnt=8, price=34.99)
+
+All products (5):
+  Widget A      cnt= 10  $29.99
+  Widget B      cnt=  5  $19.99
+  Gadget C      cnt= 20  $49.99
+  Part D        cnt=100  $2.50
+  Tool E        cnt=  8  $34.99
+
+Products over $20 (3):
+  Gadget C      $49.99
+  Tool E        $34.99
+  Widget A      $29.99
+
+Aggregation: 5 products, avg $27.49, total count 143
+
+Updated Widget A: $29.99 -> $24.99
+Restocked 1 cheap products (+50 each)
+
+All products (5):
+  Widget A      cnt= 10  $24.99
+  Widget B      cnt=  5  $19.99
+  Gadget C      cnt= 20  $49.99
+  Part D        cnt=150  $2.50
+  Tool E        cnt=  8  $34.99
+
+Deleted 'Tool E'
+Remaining products: 4
+
+Cleaned up

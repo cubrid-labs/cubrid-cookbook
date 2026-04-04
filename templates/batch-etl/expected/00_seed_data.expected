@@ -1,0 +1,21 @@
+Seeded 180 rows into table 'cookbook_sales'.
+
+Preview (first 10 rows):
+ sale_id  sale_date                 product    category  quantity unit_price  region sales_channel  is_promo  revenue
+       1 {{DATE}} Noise-Cancel Headphones Electronics         8     225.67   South        Online         0  1805.36
+       2 {{DATE}} Noise-Cancel Headphones Electronics         1     260.85   North        Online         0   260.85
+       3 {{DATE}}         Notebook Pro 14 Electronics        18    1351.35    West        Online         1 24324.30
+       4 {{DATE}}            Water Bottle Accessories         6      26.46    West        Retail         1   158.76
+       5 {{DATE}}            Office Chair   Furniture         4     180.27   North        Retail         0   721.08
+       6 {{DATE}}                Backpack Accessories         9      87.84   North   Distributor         1   790.56
+       7 {{DATE}} Noise-Cancel Headphones Electronics         3     284.68 Central        Retail         1   854.04
+       8 {{DATE}}           Standing Desk   Furniture         8     536.97    East        Online         0  4295.76
+       9 {{DATE}} Noise-Cancel Headphones Electronics        12     247.76   South        Retail         1  2973.12
+      10 {{DATE}}           Standing Desk   Furniture         3     532.68 Central   Distributor         0  1598.04
+
+Sales by category:
+   category  total_qty total_revenue
+Electronics        584     381264.13
+  Furniture        349     139726.04
+Accessories        349      17912.90
+    Grocery        450      11868.69

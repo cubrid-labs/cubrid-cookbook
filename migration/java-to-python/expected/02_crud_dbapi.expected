@@ -1,0 +1,43 @@
+Created table 'cookbook_items'
+Inserted 1 row
+Inserted 4 rows
+
+All items (5 rows):
+   ID  Value         Count     Price
+    1  Widget A         10  $  29.99
+    2  Widget B          5  $  19.99
+    3  Gadget C         20  $  49.99
+    4  Part D          100  $   2.50
+    5  Tool E            8  $  34.99
+
+Items over $20 (3 rows):
+  Gadget C      $49.99
+  Tool E        $34.99
+  Widget A      $29.99
+
+First item: Widget A (count=10)
+Second item: Widget B (count=5)
+
+Updated Widget A price (rows affected: 1)
+Restocked cheap items (rows affected: 1)
+
+All items (5 rows):
+   ID  Value         Count     Price
+    1  Widget A         10  $  24.99
+    2  Widget B          5  $  19.99
+    3  Gadget C         20  $  49.99
+    4  Part D          110  $   2.50
+    5  Tool E            8  $  34.99
+
+Deleted Tool E (rows affected: 1)
+
+All items (4 rows):
+   ID  Value         Count     Price
+    1  Widget A         10  $  24.99
+    2  Widget B          5  $  19.99
+    3  Gadget C         20  $  49.99
+    4  Part D          110  $   2.50
+
+Null handling: val='NullTest', cnt=None, price=None
+
+Cleaned up table 'cookbook_items'

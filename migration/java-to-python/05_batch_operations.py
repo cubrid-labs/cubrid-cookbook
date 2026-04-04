@@ -256,12 +256,6 @@ if __name__ == "__main__":
         print("=== Batch INSERT ===")
         batch_insert_executemany(conn)
 
-        setup(conn)
-        batch_insert_chunked(conn)
-
-        setup(conn)
-        batch_insert_single_commit(conn)
-
         print("\n=== Batch UPDATE ===")
         batch_update(conn)
 
@@ -269,6 +263,14 @@ if __name__ == "__main__":
         batch_delete(conn)
 
         verify_counts(conn)
+
+        print("\n=== Batch INSERT (chunked) ===")
+        setup(conn)
+        batch_insert_chunked(conn)
+
+        print("\n=== Batch INSERT (single commit) ===")
+        setup(conn)
+        batch_insert_single_commit(conn)
     finally:
         cleanup(conn)
         conn.close()

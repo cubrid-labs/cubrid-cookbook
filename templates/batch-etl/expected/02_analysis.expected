@@ -1,0 +1,84 @@
+=== Dataset Overview ===
+ sale_id  sale_date                 product    category  quantity  unit_price  region sales_channel  is_promo  revenue
+       1 {{DATE}} Noise-Cancel Headphones Electronics         8      225.67   South        Online         0  1805.36
+       2 {{DATE}} Noise-Cancel Headphones Electronics         1      260.85   North        Online         0   260.85
+       3 {{DATE}}         Notebook Pro 14 Electronics        18     1351.35    West        Online         1 24324.30
+       4 {{DATE}}            Water Bottle Accessories         6       26.46    West        Retail         1   158.76
+       5 {{DATE}}            Office Chair   Furniture         4      180.27   North        Retail         0   721.08
+       6 {{DATE}}                Backpack Accessories         9       87.84   North   Distributor         1   790.56
+       7 {{DATE}} Noise-Cancel Headphones Electronics         3      284.68 Central        Retail         1   854.04
+       8 {{DATE}}           Standing Desk   Furniture         8      536.97    East        Online         0  4295.76
+       9 {{DATE}} Noise-Cancel Headphones Electronics        12      247.76   South        Retail         1  2973.12
+      10 {{DATE}}           Standing Desk   Furniture         3      532.68 Central   Distributor         0  1598.04
+
+=== Statistical Summary (describe) ===
+         quantity   unit_price       revenue
+count  180.000000   180.000000    180.000000
+mean     9.622222   308.693056   3059.843111
+std      5.351505   407.205020   4790.338023
+min      1.000000    16.900000     19.390000
+25%      5.000000    30.815000    285.232500
+50%      9.000000   179.710000    827.305000
+75%     14.000000   329.727500   4097.727500
+max     20.000000  1486.710000  24460.200000
+
+=== Product Frequency (value_counts) ===
+product
+Noise-Cancel Headphones    32
+Protein Bars               25
+Standing Desk              23
+Notebook Pro 14            22
+Espresso Beans             22
+Backpack                   21
+Water Bottle               18
+Office Chair               17
+
+=== GroupBy: Category and Region ===
+   category  region  total_quantity  total_revenue  orders
+Accessories Central             113        6324.83      10
+Accessories    East              42        1926.82       7
+Accessories   North              66        4353.03       6
+Accessories   South              60        2500.55       8
+Accessories    West              68        2807.67       8
+Electronics Central             140       95816.03      12
+Electronics    East             120       70720.65      12
+Electronics   North              96       70706.45      10
+Electronics   South             144       71072.43      12
+Electronics    West              84       72948.57       8
+  Furniture Central              69       27867.16      10
+  Furniture    East              94       45182.13      11
+  Furniture   North              74       25701.27       8
+  Furniture   South              34       10888.98       4
+  Furniture    West              78       30086.50       7
+    Grocery Central             104        2703.56      13
+    Grocery    East             107        2704.00      10
+    Grocery   North              96        2572.07      11
+    Grocery   South              57        1314.79       5
+    Grocery    West              86        2574.27       8
+
+=== Pivot Table: Revenue by Category x Region ===
+region        Central      East     North     South      West
+category                                                     
+Accessories   6324.83   1926.82   4353.03   2500.55   2807.67
+Electronics  95816.03  70720.65  70706.45  71072.43  72948.57
+Furniture    27867.16  45182.13  25701.27  10888.98  30086.50
+Grocery       2703.56   2704.00   2572.07   1314.79   2574.27
+
+=== Date-based Analysis: Monthly Sales ===
+year_month  total_quantity  total_revenue  order_count
+   2025-01             261       56403.64           26
+   2025-02             175       64953.22           19
+   2025-03             318      107948.31           33
+   2025-04             308      101680.54           31
+   2025-05             364       99691.06           38
+   2025-06             306      120094.99           33
+
+=== Date-based Analysis: Day of Week Revenue ===
+ day_name  total_revenue  orders
+   Friday       54996.92      17
+   Monday       54350.91      15
+ Saturday       55971.87      26
+   Sunday      103963.56      31
+ Thursday      136547.74      38
+  Tuesday       71479.41      25
+Wednesday       73461.35      28

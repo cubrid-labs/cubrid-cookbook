@@ -1,0 +1,31 @@
+Setup: 3 accounts created
+
+=== Commit ===
+  Balances [before]: Alice=$1000.00, Bob=$500.00, Charlie=$750.00
+  Transferred $200 Alice -> Bob
+  Balances [after commit]: Alice=$800.00, Bob=$700.00, Charlie=$750.00
+
+=== Rollback ===
+  Set Alice=0 (not committed)
+  Rolled back
+  Balances [after rollback]: Alice=$800.00, Bob=$700.00, Charlie=$750.00
+
+=== Safe Transfer ===
+  Balances [before transfers]: Alice=$800.00, Bob=$700.00, Charlie=$750.00
+  Transfer Alice->Charlie $100: success
+  Transfer Bob->Alice $9999: failed (insufficient)
+  Balances [after transfers]: Alice=$700.00, Bob=$700.00, Charlie=$850.00
+
+=== Savepoints ===
+  Balances [before]: Alice=$700.00, Bob=$700.00, Charlie=$850.00
+  Step 1: Alice +$100
+  Step 2: Bob +$999 (will undo)
+  Rolled back to savepoint (Bob's $999 undone)
+  Balances [after savepoint commit]: Alice=$800.00, Bob=$700.00, Charlie=$850.00
+
+=== Auto-commit Mode ===
+  Default autocommit: False
+  Charlie +$1 (auto-committed, no explicit commit needed)
+  Balances [autocommit]: Alice=$800.00, Bob=$700.00, Charlie=$851.00
+
+Cleaned up

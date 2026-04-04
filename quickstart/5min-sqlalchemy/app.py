@@ -110,6 +110,8 @@ def main() -> int:
     engine = create_engine(DATABASE_URL)
 
     try:
+        metadata.drop_all(engine)
+        Base.metadata.drop_all(engine)
         metadata.create_all(engine)
         Base.metadata.create_all(engine)
         run_core_crud(engine)
