@@ -154,7 +154,6 @@ cubrid-python-cookbook/
 
 - [pycubrid](https://github.com/cubrid-labs/pycubrid) — Pure Python DB-API 2.0 driver for CUBRID
 - [sqlalchemy-cubrid](https://github.com/cubrid-labs/sqlalchemy-cubrid) — SQLAlchemy 2.0 dialect for CUBRID
-- [cubrid-benchmark](https://github.com/cubrid-labs/cubrid-benchmark) — Benchmark suite for CUBRID drivers
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
 
 ## Roadmap
