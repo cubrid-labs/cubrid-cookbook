@@ -1,6 +1,9 @@
-.PHONY: help up down status clean
+SHELL := /bin/bash
+.PHONY: help up down status clean verify demo
 
 DOCKER_COMPOSE := docker compose
+NORMALIZE := bash scripts/normalize_output.sh
+PYTHON := python3
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
@@ -23,3 +26,39 @@ status: ## Show container status
 clean: ## Stop and remove all data
 	$(DOCKER_COMPOSE) down -v
 	@echo "✓ Cleaned up all containers and volumes"
+
+verify: ## Verify example outputs against expected results
+	@echo "Verifying example outputs..."
+	@PASS=0; FAIL=0; SKIP=0; \
+	for expected in $$(find . -path '*/expected/*.expected' | sort); do \
+		dir=$$(dirname "$$(dirname "$$expected")"); \
+		base=$$(basename "$$expected" .expected); \
+		script="$$dir/$$base.py"; \
+		if [ ! -f "$$script" ]; then \
+			echo "  ? SKIP $$expected (no matching script)"; \
+			SKIP=$$((SKIP + 1)); \
+			continue; \
+		fi; \
+		actual=$$(set -o pipefail; $(PYTHON) "$$script" 2>&1 | $(NORMALIZE)); \
+		if [ $$? -ne 0 ]; then \
+			echo "  ✗ FAIL $$script (script error)"; \
+			FAIL=$$((FAIL + 1)); \
+			continue; \
+		fi; \
+		expected_content=$$(cat "$$expected"); \
+		if [ "$$actual" = "$$expected_content" ]; then \
+			echo "  ✓ PASS $$script"; \
+			PASS=$$((PASS + 1)); \
+		else \
+			echo "  ✗ FAIL $$script"; \
+			diff <(echo "$$actual") <(echo "$$expected_content") || true; \
+			FAIL=$$((FAIL + 1)); \
+		fi; \
+	done; \
+	echo ""; \
+	echo "Results: $$PASS passed, $$FAIL failed, $$SKIP skipped"; \
+	[ "$$FAIL" -eq 0 ]
+
+demo: up verify ## Full demo: start DB, verify all examples
+	@echo ""
+	@echo "✓ Demo complete — all examples verified against CUBRID"
