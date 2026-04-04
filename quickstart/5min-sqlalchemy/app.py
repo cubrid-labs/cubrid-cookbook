@@ -63,7 +63,9 @@ def run_core_crud(engine) -> None:
         )
         conn.execute(update_stmt, {"update_item_name": "core-sample", "new_val": "v2"})
 
-        delete_stmt = delete(core_items).where(core_items.c.item_name == bindparam("delete_item_name"))
+        delete_stmt = delete(core_items).where(
+            core_items.c.item_name == bindparam("delete_item_name")
+        )
         conn.execute(delete_stmt, {"delete_item_name": "core-sample"})
 
 
@@ -76,7 +78,9 @@ def run_orm_crud(engine) -> None:
             session.add(orm_item)
 
     with Session(engine) as session:
-        query_stmt = select(CookbookOrmItem).where(CookbookOrmItem.item_name == bindparam("search_item_name"))
+        query_stmt = select(CookbookOrmItem).where(
+            CookbookOrmItem.item_name == bindparam("search_item_name")
+        )
         found = session.execute(query_stmt, {"search_item_name": "orm-sample"}).scalar_one_or_none()
         print(
             "ORM query result:",
@@ -90,7 +94,9 @@ def run_orm_crud(engine) -> None:
     with Session(engine) as session:
         with session.begin():
             to_update = session.execute(
-                select(CookbookOrmItem).where(CookbookOrmItem.item_name == bindparam("update_item_name")),
+                select(CookbookOrmItem).where(
+                    CookbookOrmItem.item_name == bindparam("update_item_name")
+                ),
                 {"update_item_name": "orm-sample"},
             ).scalar_one_or_none()
             if to_update is not None:
@@ -99,7 +105,9 @@ def run_orm_crud(engine) -> None:
     with Session(engine) as session:
         with session.begin():
             to_delete = session.execute(
-                select(CookbookOrmItem).where(CookbookOrmItem.item_name == bindparam("delete_item_name")),
+                select(CookbookOrmItem).where(
+                    CookbookOrmItem.item_name == bindparam("delete_item_name")
+                ),
                 {"delete_item_name": "orm-sample"},
             ).scalar_one_or_none()
             if to_delete is not None:

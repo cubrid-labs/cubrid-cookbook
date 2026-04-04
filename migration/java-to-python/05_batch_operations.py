@@ -86,10 +86,7 @@ def batch_insert_executemany(conn: pycubrid.Connection) -> None:
 
     Python — executemany handles the loop internally:
     """
-    sensor_data = [
-        (f"sensor_{i:04d}", i % 100, f"reading_{i}")
-        for i in range(1000)
-    ]
+    sensor_data = [(f"sensor_{i:04d}", i % 100, f"reading_{i}") for i in range(1000)]
 
     cursor = conn.cursor()
 
@@ -101,7 +98,7 @@ def batch_insert_executemany(conn: pycubrid.Connection) -> None:
     conn.commit()
     elapsed = time.perf_counter() - t0
 
-    print(f"executemany: inserted {len(sensor_data)} rows in {elapsed*1000:.1f}ms")
+    print(f"executemany: inserted {len(sensor_data)} rows in {elapsed * 1000:.1f}ms")
     cursor.close()
 
 
@@ -124,17 +121,14 @@ def batch_insert_chunked(conn: pycubrid.Connection) -> None:
 
     Python — chunk with slicing, commit per chunk:
     """
-    rows = [
-        (f"bulk_{i:05d}", i % 256, f"data_{i}")
-        for i in range(2000)
-    ]
+    rows = [(f"bulk_{i:05d}", i % 256, f"data_{i}") for i in range(2000)]
 
     chunk_size = 500
     cursor = conn.cursor()
 
     t0 = time.perf_counter()
     for offset in range(0, len(rows), chunk_size):
-        chunk = rows[offset:offset + chunk_size]
+        chunk = rows[offset : offset + chunk_size]
         cursor.executemany(
             "INSERT INTO cookbook_sensors (val, cnt, file_data) VALUES (?, ?, ?)",
             chunk,
@@ -142,7 +136,7 @@ def batch_insert_chunked(conn: pycubrid.Connection) -> None:
         conn.commit()
     elapsed = time.perf_counter() - t0
 
-    print(f"chunked ({chunk_size}/commit): inserted {len(rows)} rows in {elapsed*1000:.1f}ms")
+    print(f"chunked ({chunk_size}/commit): inserted {len(rows)} rows in {elapsed * 1000:.1f}ms")
     cursor.close()
 
 
@@ -154,10 +148,7 @@ def batch_insert_single_commit(conn: pycubrid.Connection) -> None:
 
     Trade-off: If insertion fails mid-batch, all rows roll back.
     """
-    rows = [
-        (f"fast_{i:05d}", i % 256, f"data_{i}")
-        for i in range(2000)
-    ]
+    rows = [(f"fast_{i:05d}", i % 256, f"data_{i}") for i in range(2000)]
 
     cursor = conn.cursor()
 
@@ -169,7 +160,7 @@ def batch_insert_single_commit(conn: pycubrid.Connection) -> None:
     conn.commit()
     elapsed = time.perf_counter() - t0
 
-    print(f"single commit: inserted {len(rows)} rows in {elapsed*1000:.1f}ms")
+    print(f"single commit: inserted {len(rows)} rows in {elapsed * 1000:.1f}ms")
     cursor.close()
 
 
@@ -190,10 +181,7 @@ def batch_update(conn: pycubrid.Connection) -> None:
 
     Python — same executemany, works for UPDATE too:
     """
-    updates = [
-        (999, f"sensor_{i:04d}")
-        for i in range(0, 100, 10)
-    ]
+    updates = [(999, f"sensor_{i:04d}") for i in range(0, 100, 10)]
 
     cursor = conn.cursor()
     cursor.executemany(
