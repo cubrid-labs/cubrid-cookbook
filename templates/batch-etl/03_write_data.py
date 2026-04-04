@@ -48,7 +48,7 @@ def main() -> int:
     try:
         if not inspect(engine).has_table(SOURCE_TABLE):
             print(f"Missing required source table '{SOURCE_TABLE}'.")
-            print("Run seed_data.py first to create and populate sample data.")
+            print("Run 00_seed_data.py first to create and populate sample data.")
             return 1
 
         source_df = pd.read_sql_query(

@@ -1,0 +1,19 @@
+=== Basic Connection ===
+1 + 1 = 2
+
+=== Context Manager ===
+CUBRID version: {{VERSION}}
+
+=== Connection Metadata ===
+Version:  {{VERSION}}
+Database: testdb
+User:     DBA@{{HOSTNAME}}
+
+=== Auto-commit Control ===
+Default autocommit: False
+After enable:       True
+After disable:      False
+
+=== Multiple Connections ===
+Connection 1: conn1
+Connection 2: conn2

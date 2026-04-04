@@ -162,7 +162,7 @@ def one_to_many(engine) -> None:
         professors = session.scalars(stmt).all()
 
         for prof in professors:
-            course_list = ", ".join(c.title for c in prof.courses) or "none"
+            course_list = ", ".join(sorted(c.title for c in prof.courses)) or "none"
             print(f"  {prof.name} teaches: {course_list}")
 
 
@@ -177,7 +177,7 @@ def many_to_many(engine) -> None:
 
         print("  Course enrollments:")
         for course in courses:
-            students = ", ".join(s.name for s in course.students) or "none"
+            students = ", ".join(sorted(s.name for s in course.students)) or "none"
             print(f"    {course.title:25s}  ({len(course.students)} students): {students}")
 
         # Student → Courses
@@ -186,7 +186,7 @@ def many_to_many(engine) -> None:
         students = session.scalars(stmt).all()
 
         for student in students:
-            courses_str = ", ".join(c.title for c in student.courses) or "none"
+            courses_str = ", ".join(sorted(c.title for c in student.courses)) or "none"
             print(f"    {student.name:10s}  ({len(student.courses)} courses): {courses_str}")
 
 

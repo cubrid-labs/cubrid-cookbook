@@ -1,0 +1,37 @@
+=== Initial DataFrame to write (replace) ===
+ demo_id  sale_date                 product    category  region  quantity
+       1 {{DATE}} Noise-Cancel Headphones Electronics   South         8
+       2 {{DATE}} Noise-Cancel Headphones Electronics   North         1
+       3 {{DATE}}         Notebook Pro 14 Electronics    West        18
+       4 {{DATE}}            Water Bottle Accessories    West         6
+       5 {{DATE}}            Office Chair   Furniture   North         4
+       6 {{DATE}}                Backpack Accessories   North         9
+       7 {{DATE}} Noise-Cancel Headphones Electronics Central         3
+       8 {{DATE}}           Standing Desk   Furniture    East         8
+       9 {{DATE}} Noise-Cancel Headphones Electronics   South        12
+      10 {{DATE}}           Standing Desk   Furniture Central         3
+Wrote 25 rows to 'cookbook_sales_write_demo' with if_exists='replace'.
+Appended 10 rows with if_exists='append'.
+Appended 50 rows using chunked to_sql(chunksize=10).
+
+=== Final row count in target table ===
+ row_count
+        85
+
+=== Preview of target data ===
+ demo_id  sale_date                 product    category  region  quantity
+       1 {{DATE}} Noise-Cancel Headphones Electronics   South         8
+       2 {{DATE}} Noise-Cancel Headphones Electronics   North         1
+       3 {{DATE}}         Notebook Pro 14 Electronics    West        18
+       4 {{DATE}}            Water Bottle Accessories    West         6
+       5 {{DATE}}            Office Chair   Furniture   North         4
+       6 {{DATE}}                Backpack Accessories   North         9
+       7 {{DATE}} Noise-Cancel Headphones Electronics Central         3
+       8 {{DATE}}           Standing Desk   Furniture    East         8
+       9 {{DATE}} Noise-Cancel Headphones Electronics   South        12
+      10 {{DATE}}           Standing Desk   Furniture Central         3
+      11 {{DATE}}           Standing Desk   Furniture Central         9
+      12 {{DATE}}         Notebook Pro 14 Electronics    West        11
+      13 {{DATE}}           Standing Desk   Furniture   South        11
+      14 {{DATE}}          Espresso Beans     Grocery   South        15
+      15 {{DATE}}           Standing Desk   Furniture Central         9

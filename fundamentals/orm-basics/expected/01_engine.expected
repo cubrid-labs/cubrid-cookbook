@@ -1,0 +1,37 @@
+=== Basic Engine ===
+  SELECT 1 + 1 = 2
+  CUBRID version: {{VERSION}}
+  ✓ Engine created and disposed
+
+=== Engine with Pool Settings ===
+  Pool size: 5
+  Checked in: 0
+  Checked out: 0
+  After connect — checked out: 1
+  After close — checked out: 0
+  ✓ Pool engine created and disposed
+
+=== Engine with SQL Echo ===
+  (SQL statements will be logged below)
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine SELECT VERSION()
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine [generated in {{TIME}}s] ()
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine SELECT SCHEMA()
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine [generated in {{TIME}}s] ()
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine BEGIN (implicit)
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine SELECT 'hello from CUBRID'
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine [generated in {{TIME}}s] ()
+{{TIMESTAMP}} INFO sqlalchemy.engine.Engine ROLLBACK
+  ✓ Echo mode demonstrated
+
+=== Engine Events ===
+  Queries executed: 3
+  ✓ Event listeners demonstrated
+
+=== Supported URL Formats ===
+  pycubrid (pure Python)          cubrid+pycubrid://dba@localhost:33000/testdb
+  pycubrid with password          cubrid+pycubrid://dba:password@localhost:33000/testdb
+  CUBRIDdb (C extension)          cubrid://dba@localhost:33000/testdb
+  CUBRIDdb with password          cubrid://dba:password@localhost:33000/testdb
+
+  Active driver: pycubrid
+  Dialect: cubrid

@@ -16,7 +16,7 @@ def load_sales_dataframe() -> pd.DataFrame | None:
     try:
         if not inspect(engine).has_table(SALES_TABLE_NAME):
             print(f"Missing required table '{SALES_TABLE_NAME}'.")
-            print("Run seed_data.py first to create and populate sample data.")
+            print("Run 00_seed_data.py first to create and populate sample data.")
             return None
 
         df = pd.read_sql(SALES_TABLE_NAME, engine)

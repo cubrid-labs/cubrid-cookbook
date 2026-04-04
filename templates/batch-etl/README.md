@@ -18,7 +18,7 @@ The template uses `cookbook_` table names and includes defensive checks for miss
 2. Start CUBRID (for example from a repository-level compose file), then run scripts in order:
 
    ```bash
-   python seed_data.py
+   python 00_seed_data.py
    python 01_read_data.py
    python 02_analysis.py
    python 03_write_data.py
@@ -30,7 +30,7 @@ The template uses `cookbook_` table names and includes defensive checks for miss
 ## Project Structure
 
 ```text
-seed_data.py        # Creates and seeds cookbook_sales with realistic sample rows
+00_seed_data.py     # Creates and seeds cookbook_sales with realistic sample rows
 01_read_data.py     # Demonstrates pd.read_sql_query, pd.read_sql, pd.read_sql_table
 02_analysis.py      # Performs descriptive stats, groupby, pivot, and date-based analysis
 03_write_data.py    # Demonstrates to_sql replace/append/chunked writes
@@ -55,7 +55,7 @@ If your environment differs, update `DATABASE_URL` values consistently across al
 
 ## What Each Script Produces
 
-- `seed_data.py`: recreates and seeds `cookbook_sales`.
+- `00_seed_data.py`: recreates and seeds `cookbook_sales`.
 - `01_read_data.py`: prints SQL read examples and revenue-by-region summary.
 - `02_analysis.py`: prints dataset overview and analytics summaries.
 - `03_write_data.py`: writes demo outputs into `cookbook_sales_write_demo`.

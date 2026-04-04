@@ -19,7 +19,7 @@ def ensure_sales_table_exists(engine) -> bool:
 
     if not has_table:
         print(f"Missing required table '{SALES_TABLE_NAME}'.")
-        print("Run seed_data.py first to create and populate sample data.")
+        print("Run 00_seed_data.py first to create and populate sample data.")
         return False
 
     return True

@@ -25,7 +25,7 @@ def configure_logging() -> None:
 def extract(engine) -> pd.DataFrame | None:
     if not inspect(engine).has_table(SOURCE_TABLE):
         logging.error("Missing required source table '%s'.", SOURCE_TABLE)
-        logging.error("Run seed_data.py first to create and populate sample data.")
+        logging.error("Run 00_seed_data.py first to create and populate sample data.")
         return None
 
     df = pd.read_sql(SOURCE_TABLE, engine)

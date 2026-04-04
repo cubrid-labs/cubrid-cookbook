@@ -1,0 +1,37 @@
+=== Relationships — Setup ===
+  ✓ Created tables with foreign keys
+
+=== Seed Data ===
+  ✓ Seeded 2 departments, 3 professors, 4 courses, 3 students
+
+=== One-to-Many ===
+  Computer Science:
+    • Dr. Smith
+    • Dr. Jones
+  Mathematics:
+    • Dr. Taylor
+
+  Dr. Smith teaches: Algorithms, Databases
+  Dr. Taylor teaches: Calculus
+  Dr. Jones teaches: Machine Learning
+
+=== Many-to-Many ===
+  Course enrollments:
+    Algorithms                 (3 students): Alice, Bob, Charlie
+    Calculus                   (1 students): Alice
+    Machine Learning           (2 students): Bob, Charlie
+    Databases                  (2 students): Alice, Charlie
+
+  Student schedules:
+    Alice       (3 courses): Algorithms, Calculus, Databases
+    Bob         (2 courses): Algorithms, Machine Learning
+    Charlie     (3 courses): Algorithms, Databases, Machine Learning
+
+=== Eager Loading ===
+  Full course catalog:
+    Algorithms                 Prof: Dr. Smith        Students: 3
+    Calculus                   Prof: Dr. Taylor       Students: 1
+    Databases                  Prof: Dr. Smith        Students: 2
+    Machine Learning           Prof: Dr. Jones        Students: 2
+
+✓ Cleaned up

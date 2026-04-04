@@ -1,0 +1,47 @@
+=== Reflection — Setup ===
+  ✓ Created tables with FK and index
+
+=== List Tables ===
+  Cookbook tables (2):
+    • cookbook_ref_articles
+    • cookbook_ref_authors
+
+=== Reflect Columns ===
+
+  cookbook_ref_authors:
+    Column           Type                  Nullable     Default
+    ------           ----                  --------     -------
+    id               INTEGER                     No        None
+    name             VARCHAR(100)                No        None
+    country          VARCHAR(50)                Yes        None
+
+  cookbook_ref_articles:
+    Column           Type                  Nullable     Default
+    ------           ----                  --------     -------
+    id               INTEGER                     No        None
+    title            VARCHAR(200)                No        None
+    author_id        INTEGER                    Yes        None
+    views            INTEGER                    Yes        None
+    rating           DOUBLE                     Yes        None
+
+=== Reflect Constraints ===
+  cookbook_ref_authors PK: ['id']
+  cookbook_ref_articles PK: ['id']
+
+  Foreign keys on cookbook_ref_articles:
+
+=== Reflect Indexes ===
+  Indexes on cookbook_ref_articles:
+    fk_cookbook_ref_articles_author_id  columns=['author_id']
+    idx_articles_views              columns=['views']
+
+=== Autoload Table ===
+  Reflected 'cookbook_ref_authors' with 3 columns:
+    • id: INTEGER
+    • name: VARCHAR(100)
+    • country: VARCHAR(50)
+
+  Queried 1 row(s) from reflected table:
+    id=1, name=Test Author, country=US
+
+✓ Cleaned up

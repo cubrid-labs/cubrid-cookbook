@@ -1,0 +1,58 @@
+=== ORM — Create Tables ===
+  ✓ Created 'cookbook_books' table
+
+=== ORM — Add Books ===
+  ✓ Added 5 books
+    Book(id=1, title='Clean Code', author='Robert C. Martin')
+    Book(id=2, title='Design Patterns', author='Gang of Four')
+    Book(id=3, title='The Pragmatic Programmer', author='David Thomas')
+    Book(id=4, title='Refactoring', author='Martin Fowler')
+    Book(id=5, title='Clean Architecture', author='Robert C. Martin')
+
+=== ORM — Query Books ===
+  All books (5):
+    Clean Code                      by Robert C. Martin      $39.99
+    Design Patterns                 by Gang of Four          $49.99
+    The Pragmatic Programmer        by David Thomas          $44.99
+    Refactoring                     by Martin Fowler         $47.99
+    Clean Architecture              by Robert C. Martin      $34.99
+
+  Books by Robert C. Martin (2):
+    Clean Code
+    Clean Architecture
+
+  Books $40-$50 (3):
+    The Pragmatic Programmer        $44.99
+    Refactoring                     $47.99
+    Design Patterns                 $49.99
+
+=== ORM — Advanced Queries ===
+  Books by author:
+    Robert C. Martin      2 books  avg $37.49
+    David Thomas          1 books  avg $44.99
+    Gang of Four          1 books  avg $49.99
+    Martin Fowler         1 books  avg $47.99
+
+  Page 1:
+    Clean Code
+    Design Patterns
+
+  Page 2:
+    The Pragmatic Programmer
+    Refactoring
+
+  Page 3:
+    Clean Architecture
+
+  Total books: 5
+  'Clean Code' exists: True
+
+=== ORM — Update Books ===
+  ✓ Updated 'Clean Code' price: $39.99 → $42.99
+  ✓ Applied 10% discount to 3 books with 400+ pages
+
+=== ORM — Delete Books ===
+  ✓ Deleted 'Design Patterns'
+  Remaining books: 4
+
+✓ Cleaned up

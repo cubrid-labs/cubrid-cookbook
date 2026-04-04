@@ -1,0 +1,7 @@
+=== SQLAlchemy Core CRUD ===
+Core query result: [(1, 'core-sample', 'v1')]
+
+=== SQLAlchemy ORM CRUD ===
+ORM query result: 1 orm-sample
+
+Done. Core and ORM CRUD completed successfully.

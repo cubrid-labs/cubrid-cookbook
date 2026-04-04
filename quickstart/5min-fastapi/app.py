@@ -6,11 +6,14 @@ import pycubrid
 
 app = FastAPI(title="CUBRID Quickstart API")
 
+
 class ItemIn(BaseModel):
     val: str
 
+
 class ItemOut(ItemIn):
     id: int
+
 
 def get_conn() -> pycubrid.Connection:
     return pycubrid.connect(
@@ -20,6 +23,7 @@ def get_conn() -> pycubrid.Connection:
         user="dba",
         password="",
     )
+
 
 @app.on_event("startup")
 def create_table() -> None:
@@ -37,6 +41,7 @@ def create_table() -> None:
     cursor.close()
     conn.close()
 
+
 @app.get("/items", response_model=list[ItemOut])
 def list_items() -> list[ItemOut]:
     conn = get_conn()
@@ -46,6 +51,7 @@ def list_items() -> list[ItemOut]:
     cursor.close()
     conn.close()
     return [ItemOut(id=row[0], val=row[1]) for row in rows]
+
 
 @app.post("/items", response_model=ItemOut)
 def create_item(item: ItemIn) -> ItemOut:
@@ -57,6 +63,7 @@ def create_item(item: ItemIn) -> ItemOut:
     cursor.close()
     conn.close()
     return ItemOut(id=item_id, val=item.val)
+
 
 @app.get("/items/{item_id}", response_model=ItemOut)
 def get_item(item_id: int) -> ItemOut:

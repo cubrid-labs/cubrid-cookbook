@@ -73,7 +73,7 @@ class Product(Base):
     price: Mapped[float] = mapped_column(default=0.0)
 
     def __repr__(self) -> str:
-        return f"Product(id={self.id}, val={self.val!r}, cnt={self.cnt}, price={self.price})"
+        return f"Product(id={self.id}, val={self.val!r}, cnt={self.cnt}, price={self.price:.2f})"
 
 
 def create_tables(engine) -> None:
@@ -150,11 +150,7 @@ def query_filtered(engine) -> None:
     Python — method chaining replaces JPQL string building:
     """
     with Session(engine) as session:
-        stmt = (
-            select(Product)
-            .where(Product.price > 20.0)
-            .order_by(Product.price.desc())
-        )
+        stmt = select(Product).where(Product.price > 20.0).order_by(Product.price.desc())
         products = session.scalars(stmt).all()
 
         print(f"\nProducts over $20 ({len(products)}):")
@@ -180,7 +176,9 @@ def query_aggregation(engine) -> None:
             func.sum(Product.cnt).label("total_cnt"),
         )
         row = session.execute(stmt).one()
-        print(f"\nAggregation: {row.total} products, avg ${row.avg_price:.2f}, total count {row.total_cnt}")
+        print(
+            f"\nAggregation: {row.total} products, avg ${row.avg_price:.2f}, total count {row.total_cnt}"
+        )
 
 
 def update_products(engine) -> None:
